@@ -7,7 +7,7 @@ int main()
     int price[100];
 
     int count = 0;
-    int choice, subchoice, itemchoice, removechoice;
+    int choice, subchoice, itemchoice, removechoice, editchoice;
     int total = 0;
     int i;
 
@@ -18,20 +18,14 @@ int main()
         cout << "\n1. Starters";
         cout << "\n2. Main Courses";
         cout << "\n3. Desserts";
-        cout << "\n4. View Current Order";
-        cout << "\n5. Edit Order";
-        cout << "\n6. Finish Order";
+        cout << "\n4. Edit Order";
+        cout << "\n5. Finish Order";
         cout << "\n================================";
         cout << "\nEnter your choice: ";
         cin >> choice;
 
         switch (choice)
         {
-
-            // ==========================
-            // 1. STARTERS
-            // ==========================
-
             case 1:
                 do
                 {
@@ -47,8 +41,6 @@ int main()
 
                     switch (subchoice)
                     {
-
-                        // SOUPS
                         case 1:
                             do
                             {
@@ -95,8 +87,6 @@ int main()
                             } while (itemchoice != 4);
 
                             break;
-
-                        // SALADS
                         case 2:
                             do
                             {
@@ -143,8 +133,6 @@ int main()
                             } while (itemchoice != 4);
 
                             break;
-
-                        // APPETIZERS
                         case 3:
                             do
                             {
@@ -191,7 +179,6 @@ int main()
                             } while (itemchoice != 4);
 
                             break;
-
                         case 4:
                             break;
 
@@ -202,11 +189,6 @@ int main()
                 } while (subchoice != 4);
 
                 break;
-
-
-            // ==========================
-            // 2. MAIN COURSES
-            // ==========================
 
             case 2:
                 do
@@ -223,8 +205,6 @@ int main()
 
                     switch (subchoice)
                     {
-
-                        // BEEF
                         case 1:
                             do
                             {
@@ -272,7 +252,6 @@ int main()
 
                             break;
 
-                        // CHICKEN
                         case 2:
                             do
                             {
@@ -320,7 +299,6 @@ int main()
 
                             break;
 
-                        // SEAFOOD
                         case 3:
                             do
                             {
@@ -379,11 +357,6 @@ int main()
 
                 break;
 
-
-            // ==========================
-            // 3. DESSERTS
-            // ==========================
-
             case 3:
                 do
                 {
@@ -400,7 +373,6 @@ int main()
                     switch (subchoice)
                     {
 
-                        // CAKES
                         case 1:
                             do
                             {
@@ -448,7 +420,6 @@ int main()
 
                             break;
 
-                        // PASTRIES
                         case 2:
                             do
                             {
@@ -496,7 +467,6 @@ int main()
 
                             break;
 
-                        // ICE CREAM
                         case 3:
                             do
                             {
@@ -555,43 +525,63 @@ int main()
 
                 break;
 
-
             case 4:
-                cout << "\n\nCURRENT ORDER";
-                cout << "\n================================\n";
-                for (i = 0; i < count; i++) {
-                    cout<<"Order "<<i+1<<": "<<item[i]<<" - P"<<price[i]<<endl;
-                }
-                break;
-
-            case 5:
                 cout<<"\n\n Edit Order";
                 cout<<"\n================================\n";
 
-                for (i = 0; i < count; i++) {
-                    cout<<"Order "<<i+1<<": "<<item[i]<<" - P"<<price[i]<<endl;
+                if (count == 0) {
+                    cout<<"You current order is empty.";
+                    cout<<"\n===================================";
+                    break;
                 }
 
-                cout<<"Choose which to edit: ";
-                cin>>removechoice;
-                break;
+                do {
+                    cout<<"\nCurrent Order";
+                    cout<<"\n============================="<<endl;
+                    for (i = 0; i < count; i++) {
+                        cout<<"Order "<<i+1<<": "<<item[i]<<" - P"<<price[i]<<endl;
+                    }
+                    cout<<"\n===================================";
 
-                if(removechoice >= 1 && removechoice <= count) {
-                    removechoice = removechoice - 1;
+                    cout << "\n1. Remove Item";
+                    cout << "\n2. Back";
+                    cout << "\n================================";
+                    cout << "\nEnter your choice: ";
+                    cin>>editchoice;
+                    
+                    switch (editchoice) {
+                        case 1:
+                            cout<<"Choose which to remove: ";
+                            cin>>removechoice;
 
-                    for (i = removechoice; i < count - 1; i++) {
-                        item[i] = item[i + 1];
-                        price[i] = price[i + 1];
+                            if(removechoice >= 1 && removechoice <= count) {
+                                removechoice = removechoice - 1;
+
+                                for (i = removechoice; i < count - 1; i++) {
+                                    item[i] = item[i + 1];
+                                    price[i] = price[i + 1];
+                                }
+
+                                count--;
+                                cout << "\nItem removed successfully!";
+                            }
+                            break;
+                        case 2:
+                            cout<<"\n Invalid order number";
+                            break;
+                        default:
+                            cout<<"Invalid option";
+                            break;
+                    }
+                    if (count == 0) {
+                        cout<<"Your order is now empty. Returning to menu...";
+                        break;
                     }
 
-                    count--;
-                    cout << "\nItem removed successfully!";
-                } else {
-                    cout<<"\n Invalid order number";
-                }
+                }while (editchoice !=2);
                 break;
 
-            case 6:
+            case 5:
                 break;
 
             default:
@@ -599,16 +589,13 @@ int main()
                 break;
         }
 
-    } while (choice != 6);
-
-
-    // ==========================
-    // RECEIPT
-    // ==========================
+    } while (choice != 5);
 
     cout << "\n\n================================";
     cout << "\n             RECEIPT";
     cout << "\n================================\n";
+
+    total = 0;
 
     for (i = 0; i < count; i++)
     {
