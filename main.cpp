@@ -11,6 +11,11 @@ int main()
     int total = 0;
     int i;
 
+    int discountchoice;
+    float discount = 0;
+    float discountamount = 0;
+    float finaltotal = 0;
+
     do
     {
         cout << "\n\n\tFINE DINING MENU";
@@ -641,68 +646,71 @@ int main()
                     cout<<"You current order is empty.";
                     cout<<"\n===================================";
                     break;
-                }
+                } else {
+                    do {
+                        cout<<"\nCurrent Order";
+                        cout<<"\n============================="<<endl;
+                        for (i = 0; i < count; i++) {
+                            cout<< "Order " << i+1 << ": "<<endl;
+                            cout<<"Quantity: " << quantity[i]<<endl;
+                            cout<<item[i]<<endl;
+                            cout<<" - P"<<price[i]
+                            <<endl;
+                        }
+                        cout<<"\n===================================";
 
-                do {
-                    cout<<"\nCurrent Order";
-                    cout<<"\n============================="<<endl;
-                    for (i = 0; i < count; i++) {
-                        cout<<"Order "<<i+1<<": "<<item[i]<<" - P"<<price[i]<<endl;
-                    }
-                    cout<<"\n===================================";
-
-                    cout << "\n1. Remove Item";
-                    cout << "\n2. Back";
-                    cout << "\n================================";
-                    cout << "\nEnter your choice: ";
-                    cin>>editchoice;
-                    
-                    switch (editchoice) {
-                        case 1:
-                            if (removechoice >= 1 && removechoice <= count) {
-                                    cout<<"Choose which to remove: ";
+                        cout << "\n1. Remove Item";
+                        cout << "\n2. Back";
+                        cout << "\n================================";
+                        cout << "\nEnter your choice: ";
+                        cin>>editchoice;
+                        
+                        switch (editchoice) {
+                            case 1:
+                                cout<<"Choose which to remove: ";
                                 cin>>removechoice;
+                                if (removechoice >= 1 && removechoice <= count) {
+                                    removechoice --;
 
-                                removechoice --;
+                                    cout<<"How many would you like to remove: ";
+                                    cin>>removequantity;
 
-                                cout<<"How many would you like to remove: ";
-                                cin>>removequantity;
+                                    if (removequantity > 0 && removequantity < quantity[removechoice]) {
+                                        quantity[removechoice] = quantity[removechoice] - removequantity;
 
-                                if (removequantity > 0 && removequantity < quantity[removechoice]) {
-                                    quantity[removechoice] = quantity[removechoice] - removequantity;
-
-                                    cout<<"\nQuantity removed succesfully";
-                                } else if (removequantity == quantity[removechoice]) {
-                                    for (i = removechoice; i < count - 1; i ++) {
-                                        item[i] = item[i + 1];
-                                        price[i] = price[i + 1];
-                                        quantity[i] = quantity[i + 1];
+                                        cout<<"\nQuantity removed succesfully";
+                                    } else if (removequantity == quantity[removechoice]) {
+                                        for (i = removechoice; i < count - 1; i ++) {
+                                            item[i] = item[i + 1];
+                                            price[i] = price[i + 1];
+                                            quantity[i] = quantity[i + 1];
+                                        }
+                                        count--;
+                                        cout<<"Item removed succesfully";
+                                    } else {
+                                        cout<<"Invalid quantity";
+                                        break;
                                     }
-                                    count--;
-                                    cout<<"Item removed succesfully";
+                                    break;
                                 } else {
-                                    cout<<"Invalid quantity";
+                                    cout<<"Invalid order number";
                                     break;
                                 }
+                                
+                            case 2:
+                                cout<<"\n Exiting...";
                                 break;
-                            } else {
-                                cout<<"Invalid order number";
+                            default:
+                                cout<<"Invalid option";
                                 break;
-                            }
-                            
-                        case 2:
-                            cout<<"\n Exiting...";
+                        }
+                        if (count == 0) {
+                            cout<<"Your order is now empty. Returning to menu...";
                             break;
-                        default:
-                            cout<<"Invalid option";
-                            break;
-                    }
-                    if (count == 0) {
-                        cout<<"Your order is now empty. Returning to menu...";
-                        break;
-                    }
+                        }
 
-                }while (editchoice !=2);
+                    }while (editchoice !=2);
+                }
                 break;
 
             case 5:
@@ -730,9 +738,47 @@ int main()
 
         total += price[i] * quantity[i];
     }
-
     cout << "--------------------------------";
     cout << "\nTotal: P" << total;
+    cout << "\n================================";
+
+    //might make this optional output:
+
+    cout << "\n\nDISCOUNT";
+    cout << "\n================================";
+    cout << "\n1. Regular Customer";
+    cout << "\n2. Senior Citizen";
+    cout << "\n3. PWD";
+    cout << "\n4. Student";
+    cout << "\n================================";
+
+    cout<<"\nEnter discount type: ";
+    cin>>discountchoice;
+
+    switch(discountchoice) {
+        case 1:
+            discount = 0;
+            break;
+        case 2:
+        case 3:
+            discount = 0.20;
+            break;
+        case 4:
+            discount = 0.10;
+            break;
+        default:
+            cout<<"\nInvalid choice";
+            discount = 0;
+            break;
+    }
+
+    discountamount = total * discount;
+    finaltotal = total - discountamount; 
+
+    cout << "\n================================";
+    cout << "\nTotal: P" << total;
+    cout << "\nDiscount: P" << discountamount;
+    cout << "\nFinal Total: P" << finaltotal;
     cout << "\n================================";
 
     return 0;
