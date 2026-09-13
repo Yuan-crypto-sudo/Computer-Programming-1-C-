@@ -16,6 +16,10 @@ int main()
     float discountamount = 0;
     float finaltotal = 0;
 
+    float payment;
+    float remaining;
+    float change;
+
     do
     {
         cout << "\n\n\tFINE DINING MENU";
@@ -732,6 +736,7 @@ int main()
     for (i = 0; i < count; i++)
     {
         cout << "Order " << i + 1 << ": " << endl;
+        cout << "Item: " << item[i] << endl;
         cout << "Quantity: " << quantity[i] << endl;
         cout << "Price: P" << price[i] << endl;
         cout << "Subtotal: P" << price[i] * quantity[i] << endl;
@@ -780,6 +785,27 @@ int main()
     cout << "\nDiscount: P" << discountamount;
     cout << "\nFinal Total: P" << finaltotal;
     cout << "\n================================";
+
+
+
+    cout << "/t/tPAYMENT" << endl;
+    cout << "===================================";
+
+    remaining = finaltotal;
+    
+    do{
+        cout << "Remaining Balance: P" << remaining;
+
+        cout << "Enter your payment: P";
+        cin >> payment;
+
+        change = change - payment;
+
+        if (remaining > 0) {
+            cout<<"Insufficient Payment << endl";
+            cout<<"You are still P" << remaining << "short.";
+        }
+    } while (change > 0);
 
     return 0;
 }
