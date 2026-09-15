@@ -660,11 +660,11 @@ int main()
                         cout<<"\nCurrent Order";
                         cout<<"\n============================="<<endl;
                         for (i = 0; i < count; i++) {
-                            cout<< "Order " << i+1 << ": "<<endl;
-                            cout<<"Quantity: " << quantity[i]<<endl;
+                            cout<<"Order " << i+1 << ": "<<endl;
                             cout<<item[i]<<endl;
-                            cout<<" - P"<<price[i]
-                            <<endl;
+                            cout<<"Quantity: " << quantity[i]<<endl;
+                            cout<<"Price: P"<<price[i]
+                            <<endl<<endl;
                         }
                         cout<<"\n===================================";
 
@@ -687,7 +687,7 @@ int main()
                                     if (removequantity > 0 && removequantity < quantity[removechoice]) {
                                         quantity[removechoice] = quantity[removechoice] - removequantity;
 
-                                        cout<<"\nQuantity removed succesfully";
+                                        cout<<"\nQuantity removed succesfully" << endl;
                                     } else if (removequantity == quantity[removechoice]) {
                                         for (i = removechoice; i < count - 1; i ++) {
                                             item[i] = item[i + 1];
@@ -695,26 +695,26 @@ int main()
                                             quantity[i] = quantity[i + 1];
                                         }
                                         count--;
-                                        cout<<"Item removed succesfully";
+                                        cout<<"Item removed succesfully" << endl;
                                     } else {
                                         cout<<"Invalid quantity";
                                         break;
                                     }
                                     break;
                                 } else {
-                                    cout<<"Invalid order number";
+                                    cout<<"Invalid order number" << endl;
                                     break;
                                 }
                                 
                             case 2:
-                                cout<<"\n Exiting...";
+                                cout<<"\n Exiting..." << endl;
                                 break;
                             default:
-                                cout<<"Invalid option";
+                                cout<<"Invalid option" << endl;
                                 break;
                         }
                         if (count == 0) {
-                            cout<<"Your order is now empty. Returning to menu...";
+                            cout<<"Your order is now empty. Returning to menu..." << endl;
                             break;
                         }
 
@@ -726,7 +726,7 @@ int main()
                 break;
 
             default:
-                cout << "\nInvalid choice.";
+                cout << "\nInvalid choice." << endl;
                 break;
         }
 
@@ -744,7 +744,7 @@ int main()
         cout << "Item: " << item[i] << endl;
         cout << "Quantity: " << quantity[i] << endl;
         cout << "Price: P" << price[i] << endl;
-        cout << "Subtotal: P" << price[i] * quantity[i] << endl;
+        cout << "Subtotal: P" << price[i] * quantity[i] << endl << endl;
     }
     cout << "--------------------------------";
     cout << "\nTotal: P" << total;
@@ -787,11 +787,11 @@ int main()
     cout << "\nTotal: P" << total;
     cout << "\nDiscount: P" << discountamount;
     cout << "\nFinal Total: P" << finaltotal;
-    cout << "\n================================";
+    cout << "\n================================" << endl;
 
 
 
-    cout << "\t\tPAYMENT" << endl;
+    cout << "\n\t\tPAYMENT" << endl;
     cout << "===================================";
 
     remaining = finaltotal;
@@ -805,7 +805,7 @@ int main()
         remaining = CalculateRemaining(remaining, payment);
 
         if (remaining > 0) {
-            cout << "Insufficient Payment" << endl;
+            cout << "\nInsufficient Payment" << endl;
             cout << "You are still P" << remaining << " short.";
         }
     } while (remaining > 0);
