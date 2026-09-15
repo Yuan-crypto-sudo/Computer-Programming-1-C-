@@ -660,11 +660,19 @@ int main()
                         cout<<"\nCurrent Order";
                         cout<<"\n============================="<<endl;
                         for (i = 0; i < count; i++) {
+<<<<<<< HEAD
                             cout<<"Order " << i+1 << ": "<<endl;
                             cout<<item[i]<<endl;
                             cout<<"Quantity: " << quantity[i]<<endl;
                             cout<<"Price: P"<<price[i]
                             <<endl<<endl;
+=======
+                            cout<< "Order " << i+1 << ": "<<endl;
+                            cout<<"Quantity: " << quantity[i]<<endl;
+                            cout<<item[i]<<endl;
+                            cout<<" - P"<<price[i]
+                            <<endl;
+>>>>>>> 964fb027d650aa7fbe4d87703ef84a756aec4f16
                         }
                         cout<<"\n===================================";
 
@@ -687,7 +695,11 @@ int main()
                                     if (removequantity > 0 && removequantity < quantity[removechoice]) {
                                         quantity[removechoice] = quantity[removechoice] - removequantity;
 
+<<<<<<< HEAD
                                         cout<<"\nQuantity removed succesfully" << endl;
+=======
+                                        cout<<"\nQuantity removed succesfully";
+>>>>>>> 964fb027d650aa7fbe4d87703ef84a756aec4f16
                                     } else if (removequantity == quantity[removechoice]) {
                                         for (i = removechoice; i < count - 1; i ++) {
                                             item[i] = item[i + 1];
@@ -695,18 +707,27 @@ int main()
                                             quantity[i] = quantity[i + 1];
                                         }
                                         count--;
+<<<<<<< HEAD
                                         cout<<"Item removed succesfully" << endl;
+=======
+                                        cout<<"Item removed succesfully";
+>>>>>>> 964fb027d650aa7fbe4d87703ef84a756aec4f16
                                     } else {
                                         cout<<"Invalid quantity";
                                         break;
                                     }
                                     break;
                                 } else {
+<<<<<<< HEAD
                                     cout<<"Invalid order number" << endl;
+=======
+                                    cout<<"Invalid order number";
+>>>>>>> 964fb027d650aa7fbe4d87703ef84a756aec4f16
                                     break;
                                 }
                                 
                             case 2:
+<<<<<<< HEAD
                                 cout<<"\n Exiting..." << endl;
                                 break;
                             default:
@@ -715,6 +736,16 @@ int main()
                         }
                         if (count == 0) {
                             cout<<"Your order is now empty. Returning to menu..." << endl;
+=======
+                                cout<<"\n Exiting...";
+                                break;
+                            default:
+                                cout<<"Invalid option";
+                                break;
+                        }
+                        if (count == 0) {
+                            cout<<"Your order is now empty. Returning to menu...";
+>>>>>>> 964fb027d650aa7fbe4d87703ef84a756aec4f16
                             break;
                         }
 
@@ -726,7 +757,11 @@ int main()
                 break;
 
             default:
+<<<<<<< HEAD
                 cout << "\nInvalid choice." << endl;
+=======
+                cout << "\nInvalid choice.";
+>>>>>>> 964fb027d650aa7fbe4d87703ef84a756aec4f16
                 break;
         }
 
@@ -744,7 +779,11 @@ int main()
         cout << "Item: " << item[i] << endl;
         cout << "Quantity: " << quantity[i] << endl;
         cout << "Price: P" << price[i] << endl;
+<<<<<<< HEAD
         cout << "Subtotal: P" << price[i] * quantity[i] << endl << endl;
+=======
+        cout << "Subtotal: P" << price[i] * quantity[i] << endl;
+>>>>>>> 964fb027d650aa7fbe4d87703ef84a756aec4f16
     }
     cout << "--------------------------------";
     cout << "\nTotal: P" << total;
@@ -787,11 +826,19 @@ int main()
     cout << "\nTotal: P" << total;
     cout << "\nDiscount: P" << discountamount;
     cout << "\nFinal Total: P" << finaltotal;
+<<<<<<< HEAD
     cout << "\n================================" << endl;
 
 
 
     cout << "\n\t\tPAYMENT" << endl;
+=======
+    cout << "\n================================";
+
+
+
+    cout << "\t\tPAYMENT" << endl;
+>>>>>>> 964fb027d650aa7fbe4d87703ef84a756aec4f16
     cout << "===================================";
 
     remaining = finaltotal;
@@ -805,7 +852,11 @@ int main()
         remaining = CalculateRemaining(remaining, payment);
 
         if (remaining > 0) {
+<<<<<<< HEAD
             cout << "\nInsufficient Payment" << endl;
+=======
+            cout << "Insufficient Payment" << endl;
+>>>>>>> 964fb027d650aa7fbe4d87703ef84a756aec4f16
             cout << "You are still P" << remaining << " short.";
         }
     } while (remaining > 0);
