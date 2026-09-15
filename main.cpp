@@ -1,15 +1,29 @@
 #include <iostream>
 using namespace std;
 
+float CalculateRemaining(float total, float payment);
+int CalculateTotal(int price[], int quantity[], int count);
+float CalculateDiscount(float total, float discount);
+float CalculateFinalTotal(float total, float discountamount);
+
 int main()
 {
     string item[100];
-    int price[100];
+    int price[100], quantity[100];
 
     int count = 0;
-    int choice, subchoice, itemchoice, removechoice, editchoice;
+    int choice, subchoice, itemchoice, removechoice, editchoice, removequantity;
     int total = 0;
     int i;
+
+    int discountchoice;
+    float discount = 0;
+    float discountamount = 0;
+    float finaltotal = 0;
+
+    float payment;
+    float remaining;
+    float change;
 
     do
     {
@@ -59,6 +73,10 @@ int main()
                                     case 1:
                                         item[count] = "Mushroom Soup";
                                         price[count] = 180;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -66,6 +84,10 @@ int main()
                                     case 2:
                                         item[count] = "Tomato Soup";
                                         price[count] = 170;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -73,6 +95,10 @@ int main()
                                     case 3:
                                         item[count] = "Pumpkin Soup";
                                         price[count] = 190;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -105,6 +131,10 @@ int main()
                                     case 1:
                                         item[count] = "Caesar Salad";
                                         price[count] = 220;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -112,6 +142,10 @@ int main()
                                     case 2:
                                         item[count] = "Garden Salad";
                                         price[count] = 200;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -119,6 +153,10 @@ int main()
                                     case 3:
                                         item[count] = "Greek Salad";
                                         price[count] = 230;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -151,6 +189,10 @@ int main()
                                     case 1:
                                         item[count] = "Garlic Bread";
                                         price[count] = 160;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -158,6 +200,10 @@ int main()
                                     case 2:
                                         item[count] = "Calamari";
                                         price[count] = 260;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -165,6 +211,10 @@ int main()
                                     case 3:
                                         item[count] = "Stuffed Mushrooms";
                                         price[count] = 240;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -223,6 +273,10 @@ int main()
                                     case 1:
                                         item[count] = "Grilled Steak";
                                         price[count] = 650;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -230,6 +284,10 @@ int main()
                                     case 2:
                                         item[count] = "Beef Tenderloin";
                                         price[count] = 720;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -237,6 +295,10 @@ int main()
                                     case 3:
                                         item[count] = "Roast Beef";
                                         price[count] = 580;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -270,6 +332,10 @@ int main()
                                     case 1:
                                         item[count] = "Grilled Chicken";
                                         price[count] = 420;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -277,6 +343,10 @@ int main()
                                     case 2:
                                         item[count] = "Chicken Parmesan";
                                         price[count] = 460;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -284,6 +354,10 @@ int main()
                                     case 3:
                                         item[count] = "Roast Chicken";
                                         price[count] = 440;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -317,6 +391,10 @@ int main()
                                     case 1:
                                         item[count] = "Grilled Salmon";
                                         price[count] = 560;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -324,6 +402,10 @@ int main()
                                     case 2:
                                         item[count] = "Garlic Shrimp";
                                         price[count] = 480;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -331,6 +413,10 @@ int main()
                                     case 3:
                                         item[count] = "Baked Sea Bass";
                                         price[count] = 620;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -391,6 +477,10 @@ int main()
                                     case 1:
                                         item[count] = "Chocolate Cake";
                                         price[count] = 220;
+
+                                        cout << "Enter quantity: ";
+                                        cin >> quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -398,6 +488,10 @@ int main()
                                     case 2:
                                         item[count] = "Cheesecake";
                                         price[count] = 250;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -405,6 +499,10 @@ int main()
                                     case 3:
                                         item[count] = "Carrot Cake";
                                         price[count] = 230;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -438,6 +536,10 @@ int main()
                                     case 1:
                                         item[count] = "Apple Tart";
                                         price[count] = 210;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -445,6 +547,10 @@ int main()
                                     case 2:
                                         item[count] = "Chocolate Eclair";
                                         price[count] = 190;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -452,6 +558,10 @@ int main()
                                     case 3:
                                         item[count] = "Cream Puff";
                                         price[count] = 180;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -485,6 +595,10 @@ int main()
                                     case 1:
                                         item[count] = "Vanilla Ice Cream";
                                         price[count] = 160;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -492,6 +606,10 @@ int main()
                                     case 2:
                                         item[count] = "Chocolate Ice Cream";
                                         price[count] = 170;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -499,6 +617,10 @@ int main()
                                     case 3:
                                         item[count] = "Strawberry Ice Cream";
                                         price[count] = 170;
+
+                                        cout<<"Enter quantity: ";
+                                        cin>>quantity[count];
+
                                         count++;
                                         cout << "\nAdded to order.";
                                         break;
@@ -533,52 +655,71 @@ int main()
                     cout<<"You current order is empty.";
                     cout<<"\n===================================";
                     break;
-                }
+                } else {
+                    do {
+                        cout<<"\nCurrent Order";
+                        cout<<"\n============================="<<endl;
+                        for (i = 0; i < count; i++) {
+                            cout<< "Order " << i+1 << ": "<<endl;
+                            cout<<"Quantity: " << quantity[i]<<endl;
+                            cout<<item[i]<<endl;
+                            cout<<" - P"<<price[i]
+                            <<endl;
+                        }
+                        cout<<"\n===================================";
 
-                do {
-                    cout<<"\nCurrent Order";
-                    cout<<"\n============================="<<endl;
-                    for (i = 0; i < count; i++) {
-                        cout<<"Order "<<i+1<<": "<<item[i]<<" - P"<<price[i]<<endl;
-                    }
-                    cout<<"\n===================================";
+                        cout << "\n1. Remove Item";
+                        cout << "\n2. Back";
+                        cout << "\n================================";
+                        cout << "\nEnter your choice: ";
+                        cin>>editchoice;
+                        
+                        switch (editchoice) {
+                            case 1:
+                                cout<<"Choose which to remove: ";
+                                cin>>removechoice;
+                                if (removechoice >= 1 && removechoice <= count) {
+                                    removechoice --;
 
-                    cout << "\n1. Remove Item";
-                    cout << "\n2. Back";
-                    cout << "\n================================";
-                    cout << "\nEnter your choice: ";
-                    cin>>editchoice;
-                    
-                    switch (editchoice) {
-                        case 1:
-                            cout<<"Choose which to remove: ";
-                            cin>>removechoice;
+                                    cout<<"How many would you like to remove: ";
+                                    cin>>removequantity;
 
-                            if(removechoice >= 1 && removechoice <= count) {
-                                removechoice = removechoice - 1;
+                                    if (removequantity > 0 && removequantity < quantity[removechoice]) {
+                                        quantity[removechoice] = quantity[removechoice] - removequantity;
 
-                                for (i = removechoice; i < count - 1; i++) {
-                                    item[i] = item[i + 1];
-                                    price[i] = price[i + 1];
+                                        cout<<"\nQuantity removed succesfully";
+                                    } else if (removequantity == quantity[removechoice]) {
+                                        for (i = removechoice; i < count - 1; i ++) {
+                                            item[i] = item[i + 1];
+                                            price[i] = price[i + 1];
+                                            quantity[i] = quantity[i + 1];
+                                        }
+                                        count--;
+                                        cout<<"Item removed succesfully";
+                                    } else {
+                                        cout<<"Invalid quantity";
+                                        break;
+                                    }
+                                    break;
+                                } else {
+                                    cout<<"Invalid order number";
+                                    break;
                                 }
+                                
+                            case 2:
+                                cout<<"\n Exiting...";
+                                break;
+                            default:
+                                cout<<"Invalid option";
+                                break;
+                        }
+                        if (count == 0) {
+                            cout<<"Your order is now empty. Returning to menu...";
+                            break;
+                        }
 
-                                count--;
-                                cout << "\nItem removed successfully!";
-                            }
-                            break;
-                        case 2:
-                            cout<<"\n Invalid order number";
-                            break;
-                        default:
-                            cout<<"Invalid option";
-                            break;
-                    }
-                    if (count == 0) {
-                        cout<<"Your order is now empty. Returning to menu...";
-                        break;
-                    }
-
-                }while (editchoice !=2);
+                    }while (editchoice !=2);
+                }
                 break;
 
             case 5:
@@ -595,19 +736,112 @@ int main()
     cout << "\n             RECEIPT";
     cout << "\n================================\n";
 
-    total = 0;
+    total = CalculateTotal(price, quantity, count);
 
     for (i = 0; i < count; i++)
     {
-        cout << "Order " << i + 1 << ": "
-             << item[i] << " - P" << price[i] << endl;
-
-        total = total + price[i];
+        cout << "Order " << i + 1 << ": " << endl;
+        cout << "Item: " << item[i] << endl;
+        cout << "Quantity: " << quantity[i] << endl;
+        cout << "Price: P" << price[i] << endl;
+        cout << "Subtotal: P" << price[i] * quantity[i] << endl;
     }
-
     cout << "--------------------------------";
     cout << "\nTotal: P" << total;
     cout << "\n================================";
 
+    //might make this optional output:
+
+    cout << "\n\nDISCOUNT";
+    cout << "\n================================";
+    cout << "\n1. Regular Customer";
+    cout << "\n2. Senior Citizen";
+    cout << "\n3. PWD";
+    cout << "\n4. Student";
+    cout << "\n================================";
+
+    cout<<"\nEnter discount type: ";
+    cin>>discountchoice;
+
+    switch(discountchoice) {
+        case 1:
+            discount = 0;
+            break;
+        case 2:
+        case 3:
+            discount = 0.20;
+            break;
+        case 4:
+            discount = 0.10;
+            break;
+        default:
+            cout<<"\nInvalid choice";
+            discount = 0;
+            break;
+    }
+
+    discountamount = CalculateDiscount(total, discount);
+    finaltotal = CalculateFinalTotal(total, discountamount); 
+
+    cout << "\n================================";
+    cout << "\nTotal: P" << total;
+    cout << "\nDiscount: P" << discountamount;
+    cout << "\nFinal Total: P" << finaltotal;
+    cout << "\n================================";
+
+
+
+    cout << "\t\tPAYMENT" << endl;
+    cout << "===================================";
+
+    remaining = finaltotal;
+    
+    do{
+        cout << "\nRemaining Balance: P" << remaining;
+
+        cout << "\nEnter your payment: P";
+        cin >> payment;
+
+        remaining = CalculateRemaining(remaining, payment);
+
+        if (remaining > 0) {
+            cout << "Insufficient Payment" << endl;
+            cout << "You are still P" << remaining << " short.";
+        }
+    } while (remaining > 0);
+
+    if (remaining < 0) {
+        change = remaining * -1;
+        cout << "\nChange: P" << change;
+    } else {
+            cout << "\nExact Payment Received.";
+    }
+
     return 0;
+}
+
+float CalculateRemaining(float total, float payment)
+{
+    return total - payment;
+}
+
+int CalculateTotal(int price[], int quantity[], int count)
+{
+    int total = 0;
+
+    for (int i = 0; i < count; i++)
+    {
+        total += quantity[i] * price[i];
+    }
+    return total;
+}
+
+float CalculateDiscount(float total, float discount)
+{
+    return total * discount;
+}
+
+float CalculateFinalTotal(float total, float discountamount)
+{
+    return total - discountamount;
 }
