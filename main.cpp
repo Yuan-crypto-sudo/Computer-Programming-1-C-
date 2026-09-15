@@ -1,6 +1,11 @@
 #include <iostream>
 using namespace std;
 
+float CalculateRemaining(float total, float payment);
+int CalculateTotal(int price[], int quantity[], int count);
+float CalculateDiscount(float total, float discount);
+float CalculateFinalTotal(float total, float discountamount);
+
 int main()
 {
     string item[100];
@@ -731,7 +736,7 @@ int main()
     cout << "\n             RECEIPT";
     cout << "\n================================\n";
 
-    total = 0;
+    total = CalculateTotal(price, quantity, count);
 
     for (i = 0; i < count; i++)
     {
@@ -740,8 +745,6 @@ int main()
         cout << "Quantity: " << quantity[i] << endl;
         cout << "Price: P" << price[i] << endl;
         cout << "Subtotal: P" << price[i] * quantity[i] << endl;
-
-        total += price[i] * quantity[i];
     }
     cout << "--------------------------------";
     cout << "\nTotal: P" << total;
@@ -777,8 +780,8 @@ int main()
             break;
     }
 
-    discountamount = total * discount;
-    finaltotal = total - discountamount; 
+    discountamount = CalculateDiscount(total, discount);
+    finaltotal = CalculateFinalTotal(total, discountamount); 
 
     cout << "\n================================";
     cout << "\nTotal: P" << total;
@@ -788,24 +791,57 @@ int main()
 
 
 
-    cout << "/t/tPAYMENT" << endl;
+    cout << "\t\tPAYMENT" << endl;
     cout << "===================================";
 
     remaining = finaltotal;
     
     do{
-        cout << "Remaining Balance: P" << remaining;
+        cout << "\nRemaining Balance: P" << remaining;
 
-        cout << "Enter your payment: P";
+        cout << "\nEnter your payment: P";
         cin >> payment;
 
-        change = change - payment;
+        remaining = CalculateRemaining(remaining, payment);
 
         if (remaining > 0) {
-            cout<<"Insufficient Payment << endl";
-            cout<<"You are still P" << remaining << "short.";
+            cout << "Insufficient Payment" << endl;
+            cout << "You are still P" << remaining << " short.";
         }
-    } while (change > 0);
+    } while (remaining > 0);
+
+    if (remaining < 0) {
+        change = remaining * -1;
+        cout << "\nChange: P" << change;
+    } else {
+            cout << "\nExact Payment Received.";
+    }
 
     return 0;
+}
+
+float CalculateRemaining(float total, float payment)
+{
+    return total - payment;
+}
+
+int CalculateTotal(int price[], int quantity[], int count)
+{
+    int total = 0;
+
+    for (int i = 0; i < count; i++)
+    {
+        total += quantity[i] * price[i];
+    }
+    return total;
+}
+
+float CalculateDiscount(float total, float discount)
+{
+    return total * discount;
+}
+
+float CalculateFinalTotal(float total, float discountamount)
+{
+    return total - discountamount;
 }
