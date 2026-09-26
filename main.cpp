@@ -54,7 +54,6 @@ int main()
                     cout << "\n1. Soups";
                     cout << "\n2. Salads";
                     cout << "\n3. Appetizers";
-                    cout << "\n4. Back";
                     cout << "\n================================";
                     cout << "\nEnter your choice: ";
                     cin >> subchoice;
@@ -79,22 +78,12 @@ int main()
                                         item[count] = "Creamy Mushroom Soup";
                                         price[count] = 180;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 2:
                                         item[count] = "Roasted Tomato Soup";
                                         price[count] = 170;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 3:
@@ -112,19 +101,12 @@ int main()
                                     cin>>quantity[count];
 
                                     count++;
+                                    itemAdded = true;
+
                                     cout << "\nAdded to order.";
                                 }
 
-                                do {
-                                    cout << "Do you want to continue ordering? [Y/N]: ";
-                                    cin >> continuechoice;
-
-                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
-                                        cout << "Invalid choice. Enter Y or N.\n";
-                                    }
-                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
-
-                            } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
+                            } while (!itemAdded);
 
                             break;
                         case 2:
@@ -164,25 +146,18 @@ int main()
                                 }
 
                             if (itemchoice >= 1 && itemchoice <= 3) {
-                                cout<<"Enter quantity: ";
-                                cin>>quantity[count];
+                                    cout<<"Enter quantity: ";
+                                    cin>>quantity[count];
 
-                                count++;
-                                cout << "\nAdded to order.";
-                            }
+                                    count++;
+                                    itemAdded = true;
 
-                            do {
-                                cout << "Do you want to continue ordering? [Y/N]: ";
-                                cin >> continuechoice;
-
-                                if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
-                                    cout << "Invalid choice. Enter Y or N.\n";
+                                    cout << "\nAdded to order.";
                                 }
-                            } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
 
-                            } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
+                            } while (!itemAdded);
 
-                        break;
+                            break;
                         case 3:
                             do
                             {
@@ -224,28 +199,21 @@ int main()
                                     cin>>quantity[count];
 
                                     count++;
+                                    itemAdded = true;
+
                                     cout << "\nAdded to order.";
                                 }
 
-                                do {
-                                    cout << "Do you want to continue ordering? [Y/N]: ";
-                                    cin >> continuechoice;
+                            } while (!itemAdded);
 
-                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
-                                        cout << "Invalid choice. Enter Y or N.\n";
-                                    }
-                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
-
-                            } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
-
-                        break;
+                            break;
 
                         default:
                             cout << "\nInvalid choice.";
                     }
 
                     do {
-                        cout << "Do you want to continue ordering? [Y/N]: ";
+                        cout << "\nDo you want to continue ordering? [Y/N]: ";
                         cin >> continuechoice;
 
                         if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
@@ -310,19 +278,12 @@ int main()
                                     cin>>quantity[count];
 
                                     count++;
+                                    itemAdded = true;
+
                                     cout << "\nAdded to order.";
                                 }
 
-                                do {
-                                    cout << "Do you want to continue ordering? [Y/N]: ";
-                                    cin >> continuechoice;
-
-                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
-                                        cout << "Invalid choice. Enter Y or N.\n";
-                                    }
-                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
-
-                            } while (itemchoice != 4);
+                            } while (!itemAdded);
 
                             break;
 
@@ -367,19 +328,12 @@ int main()
                                     cin>>quantity[count];
 
                                     count++;
+                                    itemAdded = true;
+
                                     cout << "\nAdded to order.";
                                 }
 
-                                do {
-                                    cout << "Do you want to continue ordering? [Y/N]: ";
-                                    cin >> continuechoice;
-
-                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
-                                        cout << "Invalid choice. Enter Y or N.\n";
-                                    }
-                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
-
-                            } while (itemchoice != 4);
+                            } while (!itemAdded);
 
                             break;
 
@@ -424,19 +378,12 @@ int main()
                                     cin>>quantity[count];
 
                                     count++;
+                                    itemAdded = true;
+
                                     cout << "\nAdded to order.";
                                 }
 
-                                do {
-                                    cout << "Do you want to continue ordering? [Y/N]: ";
-                                    cin >> continuechoice;
-
-                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
-                                        cout << "Invalid choice. Enter Y or N.\n";
-                                    }
-                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
-
-                            } while (itemchoice != 4);
+                            } while (!itemAdded);
 
                             break;
 
@@ -446,7 +393,7 @@ int main()
 
 
                     do {
-                        cout << "Do you want to continue ordering? [Y/N]: ";
+                        cout << "\nDo you want to continue ordering? [Y/N]: ";
                         cin >> continuechoice;
 
                         if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
@@ -513,19 +460,12 @@ int main()
                                     cin>>quantity[count];
 
                                     count++;
+                                    itemAdded = true;
+
                                     cout << "\nAdded to order.";
                                 }
 
-                                do {
-                                    cout << "Do you want to continue ordering? [Y/N]: ";
-                                    cin >> continuechoice;
-
-                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
-                                        cout << "Invalid choice. Enter Y or N.\n";
-                                    }
-                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
-
-                            } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
+                            } while (!itemAdded);
 
                             break;
 
@@ -570,19 +510,12 @@ int main()
                                     cin>>quantity[count];
 
                                     count++;
+                                    itemAdded = true;
+
                                     cout << "\nAdded to order.";
                                 }
 
-                                do {
-                                    cout << "Do you want to continue ordering? [Y/N]: ";
-                                    cin >> continuechoice;
-
-                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
-                                        cout << "Invalid choice. Enter Y or N.\n";
-                                    }
-                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
-
-                            } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
+                            } while (!itemAdded);
 
                             break;
 
@@ -627,19 +560,12 @@ int main()
                                     cin>>quantity[count];
 
                                     count++;
+                                    itemAdded = true;
+
                                     cout << "\nAdded to order.";
                                 }
 
-                                do {
-                                    cout << "Do you want to continue ordering? [Y/N]: ";
-                                    cin >> continuechoice;
-
-                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
-                                        cout << "Invalid choice. Enter Y or N.\n";
-                                    }
-                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
-
-                            } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
+                            } while (!itemAdded);
 
                             break;
 
@@ -648,7 +574,7 @@ int main()
                     }
 
                     do {
-                        cout << "Do you want to continue ordering? [Y/N]: ";
+                        cout << "\nDo you want to continue ordering? [Y/N]: ";
                         cin >> continuechoice;
 
                         if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
@@ -713,7 +639,7 @@ int main()
                     }
 
                     do {
-                        cout << "Do you want to continue ordering? [Y/N]: ";
+                        cout << "\nDo you want to continue ordering? [Y/N]: ";
                         cin >> continuechoice;
 
                         if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
