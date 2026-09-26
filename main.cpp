@@ -16,6 +16,9 @@ int main()
     int total = 0;
     int i;
 
+    char continuechoice = 'Y';
+    bool itemAdded;
+
     int discountchoice;
     float discount = 0;
     float discountamount = 0;
@@ -27,13 +30,16 @@ int main()
 
     do
     {
+        bool itemAdded = false;
+
         cout << "\n\n\tFINE DINING MENU";
         cout << "\n================================";
         cout << "\n1. Starters";
         cout << "\n2. Main Courses";
         cout << "\n3. Desserts";
-        cout << "\n4. Edit Order";
-        cout << "\n5. Finish Order";
+        cout << "\n4. Drinks";
+        cout << "\n5. Edit Order";
+        cout << "\n6. Finish Order";
         cout << "\n================================";
         cout << "\nEnter your choice: ";
         cin >> choice;
@@ -60,10 +66,9 @@ int main()
                             {
                                 cout << "\n\nSOUPS";
                                 cout << "\n================================";
-                                cout << "\n1. Mushroom Soup       - P180";
-                                cout << "\n2. Tomato Soup         - P170";
+                                cout << "\n1. Creamy Mushroom Soup       - P180";
+                                cout << "\n2. Roasted Tomato Soup         - P170";
                                 cout << "\n3. Pumpkin Soup        - P190";
-                                cout << "\n4. Back";
                                 cout << "\n================================";
                                 cout << "\nEnter your choice: ";
                                 cin >> itemchoice;
@@ -71,7 +76,7 @@ int main()
                                 switch (itemchoice)
                                 {
                                     case 1:
-                                        item[count] = "Mushroom Soup";
+                                        item[count] = "Creamy Mushroom Soup";
                                         price[count] = 180;
 
                                         cout<<"Enter quantity: ";
@@ -82,7 +87,7 @@ int main()
                                         break;
 
                                     case 2:
-                                        item[count] = "Tomato Soup";
+                                        item[count] = "Roasted Tomato Soup";
                                         price[count] = 170;
 
                                         cout<<"Enter quantity: ";
@@ -95,22 +100,31 @@ int main()
                                     case 3:
                                         item[count] = "Pumpkin Soup";
                                         price[count] = 190;
-
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
-                                        break;
-
-                                    case 4:
+                                        
                                         break;
 
                                     default:
                                         cout << "\nInvalid choice.";
                                 }
 
-                            } while (itemchoice != 4);
+                                if (itemchoice >= 1 && itemchoice <= 3) {
+                                    cout<<"Enter quantity: ";
+                                    cin>>quantity[count];
+
+                                    count++;
+                                    cout << "\nAdded to order.";
+                                }
+
+                                do {
+                                    cout << "Do you want to continue ordering? [Y/N]: ";
+                                    cin >> continuechoice;
+
+                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
+                                        cout << "Invalid choice. Enter Y or N.\n";
+                                    }
+                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
+
+                            } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
 
                             break;
                         case 2:
@@ -121,7 +135,6 @@ int main()
                                 cout << "\n1. Caesar Salad        - P220";
                                 cout << "\n2. Garden Salad        - P200";
                                 cout << "\n3. Greek Salad         - P230";
-                                cout << "\n4. Back";
                                 cout << "\n================================";
                                 cout << "\nEnter your choice: ";
                                 cin >> itemchoice;
@@ -132,45 +145,44 @@ int main()
                                         item[count] = "Caesar Salad";
                                         price[count] = 220;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 2:
                                         item[count] = "Garden Salad";
                                         price[count] = 200;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 3:
                                         item[count] = "Greek Salad";
                                         price[count] = 230;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
-                                        break;
-
-                                    case 4:
                                         break;
 
                                     default:
                                         cout << "\nInvalid choice.";
                                 }
 
-                            } while (itemchoice != 4);
+                            if (itemchoice >= 1 && itemchoice <= 3) {
+                                cout<<"Enter quantity: ";
+                                cin>>quantity[count];
 
-                            break;
+                                count++;
+                                cout << "\nAdded to order.";
+                            }
+
+                            do {
+                                cout << "Do you want to continue ordering? [Y/N]: ";
+                                cin >> continuechoice;
+
+                                if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
+                                    cout << "Invalid choice. Enter Y or N.\n";
+                                }
+                            } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
+
+                            } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
+
+                        break;
                         case 3:
                             do
                             {
@@ -179,7 +191,6 @@ int main()
                                 cout << "\n1. Garlic Bread        - P160";
                                 cout << "\n2. Calamari            - P260";
                                 cout << "\n3. Stuffed Mushrooms   - P240";
-                                cout << "\n4. Back";
                                 cout << "\n================================";
                                 cout << "\nEnter your choice: ";
                                 cin >> itemchoice;
@@ -190,54 +201,59 @@ int main()
                                         item[count] = "Garlic Bread";
                                         price[count] = 160;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 2:
                                         item[count] = "Calamari";
                                         price[count] = 260;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 3:
                                         item[count] = "Stuffed Mushrooms";
                                         price[count] = 240;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
-                                        break;
-
-                                    case 4:
                                         break;
 
                                     default:
                                         cout << "\nInvalid choice.";
                                 }
 
-                            } while (itemchoice != 4);
+                                if (itemchoice >= 1 && itemchoice <= 3) {
+                                    cout<<"Enter quantity: ";
+                                    cin>>quantity[count];
 
-                            break;
-                        case 4:
-                            break;
+                                    count++;
+                                    cout << "\nAdded to order.";
+                                }
+
+                                do {
+                                    cout << "Do you want to continue ordering? [Y/N]: ";
+                                    cin >> continuechoice;
+
+                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
+                                        cout << "Invalid choice. Enter Y or N.\n";
+                                    }
+                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
+
+                            } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
+
+                        break;
 
                         default:
                             cout << "\nInvalid choice.";
                     }
 
-                } while (subchoice != 4);
+                    do {
+                        cout << "Do you want to continue ordering? [Y/N]: ";
+                        cin >> continuechoice;
 
+                        if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
+                            cout << "Invalid choice. Enter Y or N.\n";
+                        }
+                    } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
+
+                } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
                 break;
 
             case 2:
@@ -248,7 +264,6 @@ int main()
                     cout << "\n1. Beef";
                     cout << "\n2. Chicken";
                     cout << "\n3. Seafood";
-                    cout << "\n4. Back";
                     cout << "\n================================";
                     cout << "\nEnter your choice: ";
                     cin >> subchoice;
@@ -263,7 +278,6 @@ int main()
                                 cout << "\n1. Grilled Steak       - P650";
                                 cout << "\n2. Beef Tenderloin     - P720";
                                 cout << "\n3. Roast Beef          - P580";
-                                cout << "\n4. Back";
                                 cout << "\n================================";
                                 cout << "\nEnter your choice: ";
                                 cin >> itemchoice;
@@ -274,41 +288,39 @@ int main()
                                         item[count] = "Grilled Steak";
                                         price[count] = 650;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 2:
                                         item[count] = "Beef Tenderloin";
                                         price[count] = 720;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 3:
                                         item[count] = "Roast Beef";
                                         price[count] = 580;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
-                                        break;
-
-                                    case 4:
                                         break;
 
                                     default:
                                         cout << "\nInvalid choice.";
                                 }
+                                if (itemchoice >= 1 && itemchoice <= 3) {
+                                    cout<<"Enter quantity: ";
+                                    cin>>quantity[count];
+
+                                    count++;
+                                    cout << "\nAdded to order.";
+                                }
+
+                                do {
+                                    cout << "Do you want to continue ordering? [Y/N]: ";
+                                    cin >> continuechoice;
+
+                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
+                                        cout << "Invalid choice. Enter Y or N.\n";
+                                    }
+                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
 
                             } while (itemchoice != 4);
 
@@ -322,7 +334,6 @@ int main()
                                 cout << "\n1. Grilled Chicken     - P420";
                                 cout << "\n2. Chicken Parmesan    - P460";
                                 cout << "\n3. Roast Chicken       - P440";
-                                cout << "\n4. Back";
                                 cout << "\n================================";
                                 cout << "\nEnter your choice: ";
                                 cin >> itemchoice;
@@ -333,41 +344,40 @@ int main()
                                         item[count] = "Grilled Chicken";
                                         price[count] = 420;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 2:
                                         item[count] = "Chicken Parmesan";
                                         price[count] = 460;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 3:
                                         item[count] = "Roast Chicken";
                                         price[count] = 440;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
-                                        break;
-
-                                    case 4:
                                         break;
 
                                     default:
                                         cout << "\nInvalid choice.";
                                 }
+
+                                if (itemchoice >= 1 && itemchoice <= 3) {
+                                    cout<<"Enter quantity: ";
+                                    cin>>quantity[count];
+
+                                    count++;
+                                    cout << "\nAdded to order.";
+                                }
+
+                                do {
+                                    cout << "Do you want to continue ordering? [Y/N]: ";
+                                    cin >> continuechoice;
+
+                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
+                                        cout << "Invalid choice. Enter Y or N.\n";
+                                    }
+                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
 
                             } while (itemchoice != 4);
 
@@ -381,7 +391,6 @@ int main()
                                 cout << "\n1. Grilled Salmon      - P560";
                                 cout << "\n2. Garlic Shrimp       - P480";
                                 cout << "\n3. Baked Sea Bass      - P620";
-                                cout << "\n4. Back";
                                 cout << "\n================================";
                                 cout << "\nEnter your choice: ";
                                 cin >> itemchoice;
@@ -392,55 +401,60 @@ int main()
                                         item[count] = "Grilled Salmon";
                                         price[count] = 560;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 2:
                                         item[count] = "Garlic Shrimp";
                                         price[count] = 480;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 3:
                                         item[count] = "Baked Sea Bass";
                                         price[count] = 620;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
-                                        break;
-
-                                    case 4:
                                         break;
 
                                     default:
                                         cout << "\nInvalid choice.";
                                 }
+                                
+                                if (itemchoice >= 1 && itemchoice <= 3) {
+                                    cout<<"Enter quantity: ";
+                                    cin>>quantity[count];
+
+                                    count++;
+                                    cout << "\nAdded to order.";
+                                }
+
+                                do {
+                                    cout << "Do you want to continue ordering? [Y/N]: ";
+                                    cin >> continuechoice;
+
+                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
+                                        cout << "Invalid choice. Enter Y or N.\n";
+                                    }
+                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
 
                             } while (itemchoice != 4);
 
-                            break;
-
-                        case 4:
                             break;
 
                         default:
                             cout << "\nInvalid choice.";
                     }
 
-                } while (subchoice != 4);
 
+                    do {
+                        cout << "Do you want to continue ordering? [Y/N]: ";
+                        cin >> continuechoice;
+
+                        if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
+                            cout << "Invalid choice. Enter Y or N.\n";
+                        }
+                    } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
+
+                } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
                 break;
 
             case 3:
@@ -451,7 +465,6 @@ int main()
                     cout << "\n1. Cakes";
                     cout << "\n2. Pastries";
                     cout << "\n3. Ice Cream";
-                    cout << "\n4. Back";
                     cout << "\n================================";
                     cout << "\nEnter your choice: ";
                     cin >> subchoice;
@@ -467,7 +480,6 @@ int main()
                                 cout << "\n1. Chocolate Cake      - P220";
                                 cout << "\n2. Cheesecake          - P250";
                                 cout << "\n3. Carrot Cake         - P230";
-                                cout << "\n4. Back";
                                 cout << "\n================================";
                                 cout << "\nEnter your choice: ";
                                 cin >> itemchoice;
@@ -478,43 +490,42 @@ int main()
                                         item[count] = "Chocolate Cake";
                                         price[count] = 220;
 
-                                        cout << "Enter quantity: ";
-                                        cin >> quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 2:
                                         item[count] = "Cheesecake";
                                         price[count] = 250;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 3:
                                         item[count] = "Carrot Cake";
                                         price[count] = 230;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
-                                        break;
-
-                                    case 4:
                                         break;
 
                                     default:
                                         cout << "\nInvalid choice.";
                                 }
 
-                            } while (itemchoice != 4);
+                                if (itemchoice >= 1 && itemchoice <= 3) {
+                                    cout<<"Enter quantity: ";
+                                    cin>>quantity[count];
+
+                                    count++;
+                                    cout << "\nAdded to order.";
+                                }
+
+                                do {
+                                    cout << "Do you want to continue ordering? [Y/N]: ";
+                                    cin >> continuechoice;
+
+                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
+                                        cout << "Invalid choice. Enter Y or N.\n";
+                                    }
+                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
+
+                            } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
 
                             break;
 
@@ -526,7 +537,6 @@ int main()
                                 cout << "\n1. Apple Tart          - P210";
                                 cout << "\n2. Chocolate Eclair    - P190";
                                 cout << "\n3. Cream Puff          - P180";
-                                cout << "\n4. Back";
                                 cout << "\n================================";
                                 cout << "\nEnter your choice: ";
                                 cin >> itemchoice;
@@ -537,43 +547,42 @@ int main()
                                         item[count] = "Apple Tart";
                                         price[count] = 210;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 2:
                                         item[count] = "Chocolate Eclair";
                                         price[count] = 190;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 3:
                                         item[count] = "Cream Puff";
                                         price[count] = 180;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
-                                        break;
-
-                                    case 4:
                                         break;
 
                                     default:
                                         cout << "\nInvalid choice.";
                                 }
 
-                            } while (itemchoice != 4);
+                                if (itemchoice >= 1 && itemchoice <= 3) {
+                                    cout<<"Enter quantity: ";
+                                    cin>>quantity[count];
+
+                                    count++;
+                                    cout << "\nAdded to order.";
+                                }
+
+                                do {
+                                    cout << "Do you want to continue ordering? [Y/N]: ";
+                                    cin >> continuechoice;
+
+                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
+                                        cout << "Invalid choice. Enter Y or N.\n";
+                                    }
+                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
+
+                            } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
 
                             break;
 
@@ -585,7 +594,6 @@ int main()
                                 cout << "\n1. Vanilla Ice Cream   - P160";
                                 cout << "\n2. Chocolate Ice Cream - P170";
                                 cout << "\n3. Strawberry Ice Cream - P170";
-                                cout << "\n4. Back";
                                 cout << "\n================================";
                                 cout << "\nEnter your choice: ";
                                 cin >> itemchoice;
@@ -596,58 +604,127 @@ int main()
                                         item[count] = "Vanilla Ice Cream";
                                         price[count] = 160;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 2:
                                         item[count] = "Chocolate Ice Cream";
                                         price[count] = 170;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
                                         break;
 
                                     case 3:
                                         item[count] = "Strawberry Ice Cream";
                                         price[count] = 170;
 
-                                        cout<<"Enter quantity: ";
-                                        cin>>quantity[count];
-
-                                        count++;
-                                        cout << "\nAdded to order.";
-                                        break;
-
-                                    case 4:
                                         break;
 
                                     default:
                                         cout << "\nInvalid choice.";
                                 }
 
-                            } while (itemchoice != 4);
+                                if (itemchoice >= 1 && itemchoice <= 3) {
+                                    cout<<"Enter quantity: ";
+                                    cin>>quantity[count];
 
-                            break;
+                                    count++;
+                                    cout << "\nAdded to order.";
+                                }
 
-                        case 4:
+                                do {
+                                    cout << "Do you want to continue ordering? [Y/N]: ";
+                                    cin >> continuechoice;
+
+                                    if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
+                                        cout << "Invalid choice. Enter Y or N.\n";
+                                    }
+                                } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
+
+                            } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
+
                             break;
 
                         default:
                             cout << "\nInvalid choice.";
                     }
 
-                } while (subchoice != 4);
+                    do {
+                        cout << "Do you want to continue ordering? [Y/N]: ";
+                        cin >> continuechoice;
 
+                        if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
+                            cout << "Invalid choice. Enter Y or N.\n";
+                        }
+                    } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
+
+                } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
                 break;
 
             case 4:
+                do
+                {
+                    cout << "\n\t\tDRINKS";
+                    cout << "\n================================";
+                    cout << "\n1. House Iced Tea  - P100";
+                    cout << "\n2. Fresh Lemonade  - P130";
+                    cout << "\n3. Mango Shake     - P160";
+                    cout << "\n4. Coca-Cola       - P90";
+                    cout << "\n5. Bottled Water   - P60";
+                    cout << "\n================================";
+                    cout << "\nEnter your choice: ";
+                    cin >> itemchoice;
+
+                    switch (itemchoice)
+                    {
+                        case 1:
+                            item[count] = "House Iced Tea";
+                            price[count] = 100;
+                            break;
+
+                        case 2:
+                            item[count] = "Fresh Lemonade";
+                            price[count] = 130;
+                            break;
+
+                        case 3:
+                            item[count] = "Mango Shake";
+                            price[count] = 160;
+                            break;
+
+                        case 4:
+                            item[count] = "Coca-Cola";
+                            price[count] = 90;
+                            break;
+
+                        case 5:
+                            item[count] = "Bottled Water";
+                            price[count] = 60;
+                            break;
+
+                        default:
+                            cout << "\nInvalid item choice. Please try again.\n";
+                    }
+
+                    if (itemchoice >= 1 && itemchoice <= 5) {
+                        cout<<"Enter quantity: ";
+                        cin>>quantity[count];
+
+                        count++;
+                        cout << "\nAdded to order.";
+                    }
+
+                    do {
+                        cout << "Do you want to continue ordering? [Y/N]: ";
+                        cin >> continuechoice;
+
+                        if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
+                            cout << "Invalid choice. Enter Y or N.\n";
+                        }
+                    } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
+
+                } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
+                break;
+
+            case 5:
                 cout<<"\n\n Edit Order";
                 cout<<"\n================================\n";
 
@@ -722,15 +799,31 @@ int main()
                 }
                 break;
 
-            case 5:
+            case 6:
                 break;
 
             default:
                 cout << "\nInvalid choice." << endl;
-                break;
         }
 
-    } while (choice != 5);
+        if (itemAdded)
+        {
+            do
+            {
+                cout << "\nDo you want to order again? [Y/N]: ";
+                cin >> continuechoice;
+
+                if (continuechoice != 'Y' && continuechoice != 'y' &&
+                    continuechoice != 'N' && continuechoice != 'n')
+                {
+                    cout << "Please enter Y or N.\n";
+                }
+
+            } while (continuechoice != 'Y' && continuechoice != 'y' &&
+                    continuechoice != 'N' && continuechoice != 'n');
+        }
+
+    } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
 
     cout << "\n\n================================";
     cout << "\n             RECEIPT";
