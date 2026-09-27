@@ -19,8 +19,12 @@ int main()
     int continuechoice = 1;
     bool itemAdded;
     char discountOption;
+    string subMenu;
+    int menuChoice;
 
     int discountchoice;
+    string discountType;
+
     float discount = 0;
     float discountamount = 0;
     float finaltotal = 0;
@@ -48,6 +52,7 @@ int main()
         switch (choice)
         {
             case 1:
+                subMenu = "STARTERS";
                 do
                 {
                     cout << "\n\nSTARTERS";
@@ -61,6 +66,8 @@ int main()
 
                     switch (subchoice)
                     {
+                        case 0:
+                            break;
                         case 1:
                             do
                             {
@@ -213,22 +220,42 @@ int main()
                             cout << "\nInvalid choice.";
                     }
 
-                    do {
-                        cout << "\nDo you want to continue ordering in Starters Menu or return to Main Menu?";
-                        cout << "\n1. Starters Menu";
-                        cout << "\n2. Main Menu";
-                        cout << "\nChoice: ";
-                        cin >> continuechoice;
+                    if (subchoice >= 1 && subchoice <= 3) {
+                        do {
+                            cout << "\nDo you want to continue ordering or proceed to the checkout? [Y/N]";
+                            cout << "\n1. Continue Ordering";
+                            cout << "\n2. Proceed to Checkout";
+                            cout << "\nChoice: ";
+                            cin >> continuechoice;
 
-                        if (continuechoice != 1 && continuechoice != 2) {
-                            cout << "Invalid choice. Enter 1 or 2.\n";
-                        }
-                    } while (continuechoice != 1 && continuechoice != 2);
+                            if (continuechoice != 1 && continuechoice != 2) {
+                                cout << "Invalid choice. Enter 1 or 2.\n";
+                            }
+                        } while (continuechoice != 1 && continuechoice != 2);
+                    }
 
-                } while (!itemAdded || continuechoice == 1);
+                    if (continuechoice == 1) {
+                        do
+                        {
+                            cout << "\nWould you like to remain in " << subMenu << " or return to Main Menu?";
+                            cout << "\n1. Remain ordering in " << subMenu;
+                            cout << "\n2. Return to Main Menu";
+                            cout << "\nChoice: ";
+                            cin >> menuChoice;
+
+                            if (continuechoice != 1 && continuechoice != 2)
+                            {
+                                cout << "Please enter 1 or 2.\n";
+                            } 
+
+                        } while (menuChoice != 1 && menuChoice != 2);
+                    }
+
+                } while (continuechoice == 1 && menuChoice == 1);
                 break;
 
             case 2:
+                subMenu = "MAIN COURSES";
                 do
                 {
                     cout << "\n\nMAIN COURSES";
@@ -397,9 +424,9 @@ int main()
 
 
                     do {
-                        cout << "\nDo you want to continue ordering in Main Course Menu or return to Main Menu?";
-                        cout << "\n1. Main Course Menu";
-                        cout << "\n2. Main Menu";
+                        cout << "\nDo you want to continue ordering or proceed to the checkout? [Y/N]";
+                        cout << "\n1. Continue Ordering";
+                        cout << "\n2. Proceed to Checkout";
                         cout << "\nChoice: ";
                         cin >> continuechoice;
 
@@ -408,10 +435,11 @@ int main()
                         }
                     } while (continuechoice != 1 && continuechoice != 2);
 
-                } while (!itemAdded || continuechoice == 1);
+                } while (continuechoice == 1);
                 break;
 
             case 3:
+                subMenu = "DESSERTS";
                 do
                 {
                     cout << "\n\nDESSERTS";
@@ -581,9 +609,9 @@ int main()
                     }
 
                     do {
-                        cout << "\nDo you want to continue ordering in Desserts Menu or return to Main Menu?";
-                        cout << "\n1. Desserts Menu";
-                        cout << "\n2. Main Menu";
+                        cout << "\nDo you want to continue ordering or proceed to the checkout? [Y/N]";
+                        cout << "\n1. Continue Ordering";
+                        cout << "\n2. Proceed to Checkout";
                         cout << "\nChoice: ";
                         cin >> continuechoice;
 
@@ -592,10 +620,11 @@ int main()
                         }
                     } while (continuechoice != 1 && continuechoice != 2);
 
-                } while (!itemAdded || continuechoice == 1);
+                } while (continuechoice == 1);
                 break;
 
             case 4:
+                subMenu = "DRINKS";
                 do
                 {
                     cout << "\n\t\tDRINKS";
@@ -650,9 +679,9 @@ int main()
                     }
 
                     do {
-                        cout << "\nDo you want to continue ordering in Drinks Menu or return to Main Menu?";
-                        cout << "\n1. Drinks Menu";
-                        cout << "\n2. Main Menu";
+                        cout << "\nDo you want to continue ordering or proceed to the checkout? [Y/N]";
+                        cout << "\n1. Continue Ordering";
+                        cout << "\n2. Proceed to Checkout";
                         cout << "\nChoice: ";
                         cin >> continuechoice;
 
@@ -661,7 +690,7 @@ int main()
                         }
                     } while (continuechoice != 1 && continuechoice != 2);
 
-                } while (!itemAdded || continuechoice == 1);
+                } while (continuechoice == 1);
                 break;
 
             case 5:
@@ -746,25 +775,7 @@ int main()
                 cout << "\nInvalid choice." << endl;
         }
 
-        if (itemAdded)
-        {
-            do
-            {
-                cout << "\nWould you like to order more or proceed to checkout?";
-                cout << "\n1. Order more";
-                cout << "\n2. Proceed to checkout";
-                cout << "\nChoice: ";
-                cin >> continuechoice;
-
-                if (continuechoice != 1 && continuechoice != 2)
-                {
-                    cout << "Please enter 1 or 2.\n";
-                }
-
-            } while (continuechoice != 1 && continuechoice != 2);
-        }
-
-    } while (!itemAdded && continuechoice == 1);
+    } while (continuechoice == 1);
 
     cout << "\n\n================================";
     cout << "\n             RECEIPT";
@@ -787,39 +798,49 @@ int main()
     cout << "\nWould you like to apply for price disocunts? [Y/N]: ";
     cin >> discountOption;
 
-    while (discountOption == 'Y' || discountOption == 'y') {
-        discount = 0.20;
-        
-        cout << "\n\n             DISCOUNT";
-        cout << "\n================================";
-        cout << "\n1. Senior Citizen";
-        cout << "\n2. PWD";
-        cout << "\n================================";
+    if (discountOption == 'Y' || discountOption == 'y') {
+            while (discountOption == 'Y' || discountOption == 'y') {
+                discount = 0.20;
 
-        cout<<"\nEnter discount type: ";
-        cin>>discountchoice;
+                cout << "\n\n             DISCOUNT";
+                cout << "\n================================";
+                cout << "\n1. Senior Citizen";
+                cout << "\n2. PWD";
+                cout << "\n================================";
 
-        if (discountchoice == 1 || discountchoice == 2) {
-            break;
-        } else {
-            cout << "Invalid option. Choose again."
+                cout<<"\nEnter discount type: ";
+                cin>>discountchoice;
+
+                if (discountchoice == 1) {
+                    discountType = "Senior Citizen";
+                    break;
+                } else if (discountchoice == 2){
+                    discountType = "PWD";
+                    break;
+                } else {
+                    cout << "Invalid option. Choose again.";
+                }
+            }
+
+            discountamount = CalculateDiscount(total, discount);
+            finaltotal = CalculateFinalTotal(total, discountamount); 
+
+            cout << "\n================================";
+            cout << "\nTotal: P" << total;
+            cout << "\nDiscount Type: "<< discountType; 
+            cout << "\nDiscount: P" << discountamount;
+            cout << "\nFinal Total: P" << finaltotal;
+            cout << "\n================================" << endl;
+
+            remaining = finaltotal;
+    } else {
+        remaining = total;
     }
-
-    discountamount = CalculateDiscount(total, discount);
-    finaltotal = CalculateFinalTotal(total, discountamount); 
-
-    cout << "\n================================";
-    cout << "\nTotal: P" << total;
-    cout << "\nDiscount: P" << discountamount;
-    cout << "\nFinal Total: P" << finaltotal;
-    cout << "\n================================" << endl;
 
 
 
     cout << "\n\t\tPAYMENT" << endl;
     cout << "===================================";
-
-    remaining = finaltotal;
     
     do{
         cout << "\nRemaining Balance: P" << remaining;
