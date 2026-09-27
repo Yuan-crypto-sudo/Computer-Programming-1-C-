@@ -16,7 +16,7 @@ int main()
     int total = 0;
     int i;
 
-    char continuechoice = 'Y';
+    int continuechoice = 1;
     bool itemAdded;
 
     int discountchoice;
@@ -213,15 +213,18 @@ int main()
                     }
 
                     do {
-                        cout << "\nDo you want to continue ordering? [Y/N]: ";
+                        cout << "\nDo you want to continue ordering in Starters Menu or return to Main Menu?";
+                        cout << "\n1. Starters Menu";
+                        cout << "\n2. Main Menu";
+                        cout << "\nChoice: ";
                         cin >> continuechoice;
 
-                        if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
-                            cout << "Invalid choice. Enter Y or N.\n";
+                        if (continuechoice != 1 && continuechoice != 2) {
+                            cout << "Invalid choice. Enter 1 or 2.\n";
                         }
-                    } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
+                    } while (continuechoice != 1 && continuechoice != 2);
 
-                } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
+                } while (!itemAdded || continuechoice == 1);
                 break;
 
             case 2:
@@ -393,15 +396,18 @@ int main()
 
 
                     do {
-                        cout << "\nDo you want to continue ordering? [Y/N]: ";
+                        cout << "\nDo you want to continue ordering in Main Course Menu or return to Main Menu?";
+                        cout << "\n1. Main Course Menu";
+                        cout << "\n2. Main Menu";
+                        cout << "\nChoice: ";
                         cin >> continuechoice;
 
-                        if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
-                            cout << "Invalid choice. Enter Y or N.\n";
+                        if (continuechoice != 1 && continuechoice != 2) {
+                            cout << "Invalid choice. Enter 1 or 2.\n";
                         }
-                    } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
+                    } while (continuechoice != 1 && continuechoice != 2);
 
-                } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
+                } while (!itemAdded || continuechoice == 1);
                 break;
 
             case 3:
@@ -574,15 +580,18 @@ int main()
                     }
 
                     do {
-                        cout << "\nDo you want to continue ordering? [Y/N]: ";
+                        cout << "\nDo you want to continue ordering in Desserts Menu or return to Main Menu?";
+                        cout << "\n1. Desserts Menu";
+                        cout << "\n2. Main Menu";
+                        cout << "\nChoice: ";
                         cin >> continuechoice;
 
-                        if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
-                            cout << "Invalid choice. Enter Y or N.\n";
+                        if (continuechoice != 1 && continuechoice != 2) {
+                            cout << "Invalid choice. Enter 1 or 2.\n";
                         }
-                    } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
+                    } while (continuechoice != 1 && continuechoice != 2);
 
-                } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
+                } while (!itemAdded || continuechoice == 1);
                 break;
 
             case 4:
@@ -634,20 +643,24 @@ int main()
                         cout<<"Enter quantity: ";
                         cin>>quantity[count];
 
+                        itemAdded = true;
                         count++;
                         cout << "\nAdded to order.";
                     }
 
                     do {
-                        cout << "\nDo you want to continue ordering? [Y/N]: ";
+                        cout << "\nDo you want to continue ordering in Drinks Menu or return to Main Menu?";
+                        cout << "\n1. Drinks Menu";
+                        cout << "\n2. Main Menu";
+                        cout << "\nChoice: ";
                         cin >> continuechoice;
 
-                        if (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n') {
-                            cout << "Invalid choice. Enter Y or N.\n";
+                        if (continuechoice != 1 && continuechoice != 2) {
+                            cout << "Invalid choice. Enter 1 or 2.\n";
                         }
-                    } while (continuechoice != 'Y' && continuechoice != 'y' && continuechoice != 'N' && continuechoice != 'n');
+                    } while (continuechoice != 1 && continuechoice != 2);
 
-                } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
+                } while (!itemAdded || continuechoice == 1);
                 break;
 
             case 5:
@@ -736,17 +749,18 @@ int main()
         {
             do
             {
-                cout << "\nDo you want to order again? [Y/N]: ";
+                cout << "\nDo you want to order again?";
+                cout << "\n1. Order Again";
+                cout << "\n2. Proceed to checkout";
+                cout << "\nChoice: ";
                 cin >> continuechoice;
 
-                if (continuechoice != 'Y' && continuechoice != 'y' &&
-                    continuechoice != 'N' && continuechoice != 'n')
+                if (continuechoice != 1 && continuechoice != 2)
                 {
-                    cout << "Please enter Y or N.\n";
+                    cout << "Please enter 1 or 2.\n";
                 }
 
-            } while (continuechoice != 'Y' && continuechoice != 'y' &&
-                    continuechoice != 'N' && continuechoice != 'n');
+            } while (continuechoice != 1 && continuechoice != 2);
         }
 
     } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
