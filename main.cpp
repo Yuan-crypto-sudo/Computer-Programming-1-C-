@@ -18,6 +18,7 @@ int main()
 
     int continuechoice = 1;
     bool itemAdded;
+    char discountOption;
 
     int discountchoice;
     float discount = 0;
@@ -749,8 +750,8 @@ int main()
         {
             do
             {
-                cout << "\nDo you want to order again?";
-                cout << "\n1. Order Again";
+                cout << "\nWould you like to order more or proceed to checkout?";
+                cout << "\n1. Order more";
                 cout << "\n2. Proceed to checkout";
                 cout << "\nChoice: ";
                 cin >> continuechoice;
@@ -763,7 +764,7 @@ int main()
             } while (continuechoice != 1 && continuechoice != 2);
         }
 
-    } while (!itemAdded || continuechoice == 'Y' || continuechoice == 'y');
+    } while (!itemAdded && continuechoice == 1);
 
     cout << "\n\n================================";
     cout << "\n             RECEIPT";
@@ -783,34 +784,25 @@ int main()
     cout << "\nTotal: P" << total;
     cout << "\n================================";
 
-    //might make this optional output:
+    cout << "\nWould you like to apply for price disocunts? [Y/N]: ";
+    cin >> discountOption;
 
-    cout << "\n\nDISCOUNT";
-    cout << "\n================================";
-    cout << "\n1. Regular Customer";
-    cout << "\n2. Senior Citizen";
-    cout << "\n3. PWD";
-    cout << "\n4. Student";
-    cout << "\n================================";
+    while (discountOption == 'Y' || discountOption == 'y') {
+        discount = 0.20;
+        
+        cout << "\n\n             DISCOUNT";
+        cout << "\n================================";
+        cout << "\n1. Senior Citizen";
+        cout << "\n2. PWD";
+        cout << "\n================================";
 
-    cout<<"\nEnter discount type: ";
-    cin>>discountchoice;
+        cout<<"\nEnter discount type: ";
+        cin>>discountchoice;
 
-    switch(discountchoice) {
-        case 1:
-            discount = 0;
+        if (discountchoice == 1 || discountchoice == 2) {
             break;
-        case 2:
-        case 3:
-            discount = 0.20;
-            break;
-        case 4:
-            discount = 0.10;
-            break;
-        default:
-            cout<<"\nInvalid choice";
-            discount = 0;
-            break;
+        } else {
+            cout << "Invalid option. Choose again."
     }
 
     discountamount = CalculateDiscount(total, discount);
