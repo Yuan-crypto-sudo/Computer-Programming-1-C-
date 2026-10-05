@@ -5,6 +5,7 @@ float CalculateRemaining(float total, float payment);
 int CalculateTotal(int price[], int quantity[], int count);
 float CalculateDiscount(float total, float discount);
 float CalculateFinalTotal(float total, float discountamount);
+void EditOrder(string item[], int price[], int quantity[], int &count);
 
 int main()
 {
@@ -21,6 +22,7 @@ int main()
     char discountOption;
     string subMenu;
     int menuChoice;
+    char editOption;
 
     int discountchoice;
     string discountType;
@@ -43,8 +45,6 @@ int main()
         cout << "\n2. Main Courses";
         cout << "\n3. Desserts";
         cout << "\n4. Drinks";
-        cout << "\n5. Edit Order";
-        cout << "\n6. Finish Order";
         cout << "\n================================";
         cout << "\nEnter your choice: ";
         cin >> choice;
@@ -222,7 +222,7 @@ int main()
 
                     if (subchoice >= 1 && subchoice <= 3) {
                         do {
-                            cout << "\nDo you want to continue ordering or proceed to the checkout? [Y/N]";
+                            cout << "\nDo you want to continue ordering or proceed to the checkout?";
                             cout << "\n1. Continue Ordering";
                             cout << "\n2. Proceed to Checkout";
                             cout << "\nChoice: ";
@@ -243,7 +243,7 @@ int main()
                             cout << "\nChoice: ";
                             cin >> menuChoice;
 
-                            if (continuechoice != 1 && continuechoice != 2)
+                            if (menuChoice != 1 && menuChoice != 2)
                             {
                                 cout << "Please enter 1 or 2.\n";
                             } 
@@ -423,19 +423,38 @@ int main()
                     }
 
 
-                    do {
-                        cout << "\nDo you want to continue ordering or proceed to the checkout? [Y/N]";
-                        cout << "\n1. Continue Ordering";
-                        cout << "\n2. Proceed to Checkout";
-                        cout << "\nChoice: ";
-                        cin >> continuechoice;
+                    if (subchoice >= 1 && subchoice <= 3) {
+                        do {
+                            cout << "\nDo you want to continue ordering or proceed to the checkout?";
+                            cout << "\n1. Continue Ordering";
+                            cout << "\n2. Proceed to Checkout";
+                            cout << "\nChoice: ";
+                            cin >> continuechoice;
 
-                        if (continuechoice != 1 && continuechoice != 2) {
-                            cout << "Invalid choice. Enter 1 or 2.\n";
-                        }
-                    } while (continuechoice != 1 && continuechoice != 2);
+                            if (continuechoice != 1 && continuechoice != 2) {
+                                cout << "Invalid choice. Enter 1 or 2.\n";
+                            }
+                        } while (continuechoice != 1 && continuechoice != 2);
+                    }
 
-                } while (continuechoice == 1);
+                    if (continuechoice == 1) {
+                        do
+                        {
+                            cout << "\nWould you like to remain in " << subMenu << " or return to Main Menu?";
+                            cout << "\n1. Remain ordering in " << subMenu;
+                            cout << "\n2. Return to Main Menu";
+                            cout << "\nChoice: ";
+                            cin >> menuChoice;
+
+                            if (menuChoice != 1 && menuChoice != 2)
+                            {
+                                cout << "Please enter 1 or 2.\n";
+                            } 
+
+                        } while (menuChoice != 1 && menuChoice != 2);
+                    }
+
+                } while (continuechoice == 1 && menuChoice == 1);
                 break;
 
             case 3:
@@ -608,19 +627,38 @@ int main()
                             cout << "\nInvalid choice.";
                     }
 
-                    do {
-                        cout << "\nDo you want to continue ordering or proceed to the checkout? [Y/N]";
-                        cout << "\n1. Continue Ordering";
-                        cout << "\n2. Proceed to Checkout";
-                        cout << "\nChoice: ";
-                        cin >> continuechoice;
+                    if (subchoice >= 1 && subchoice <= 3) {
+                        do {
+                            cout << "\nDo you want to continue ordering or proceed to the checkout?";
+                            cout << "\n1. Continue Ordering";
+                            cout << "\n2. Proceed to Checkout";
+                            cout << "\nChoice: ";
+                            cin >> continuechoice;
 
-                        if (continuechoice != 1 && continuechoice != 2) {
-                            cout << "Invalid choice. Enter 1 or 2.\n";
-                        }
-                    } while (continuechoice != 1 && continuechoice != 2);
+                            if (continuechoice != 1 && continuechoice != 2) {
+                                cout << "Invalid choice. Enter 1 or 2.\n";
+                            }
+                        } while (continuechoice != 1 && continuechoice != 2);
+                    }
 
-                } while (continuechoice == 1);
+                    if (continuechoice == 1) {
+                        do
+                        {
+                            cout << "\nWould you like to remain in " << subMenu << " or return to Main Menu?";
+                            cout << "\n1. Remain ordering in " << subMenu;
+                            cout << "\n2. Return to Main Menu";
+                            cout << "\nChoice: ";
+                            cin >> menuChoice;
+
+                            if (menuChoice != 1 && menuChoice != 2)
+                            {
+                                cout << "Please enter 1 or 2.\n";
+                            } 
+
+                        } while (menuChoice != 1 && menuChoice != 2);
+                    }
+
+                } while (continuechoice == 1 && menuChoice == 1);
                 break;
 
             case 4:
@@ -676,99 +714,38 @@ int main()
                         itemAdded = true;
                         count++;
                         cout << "\nAdded to order.";
+
+                        do {
+                            cout << "\nDo you want to continue ordering or proceed to the checkout?";
+                            cout << "\n1. Continue Ordering";
+                            cout << "\n2. Proceed to Checkout";
+                            cout << "\nChoice: ";
+                            cin >> continuechoice;
+
+                            if (continuechoice != 1 && continuechoice != 2) {
+                                cout << "Invalid choice. Enter 1 or 2.\n";
+                            }
+                        } while (continuechoice != 1 && continuechoice != 2);
                     }
 
-                    do {
-                        cout << "\nDo you want to continue ordering or proceed to the checkout? [Y/N]";
-                        cout << "\n1. Continue Ordering";
-                        cout << "\n2. Proceed to Checkout";
-                        cout << "\nChoice: ";
-                        cin >> continuechoice;
+                    if (continuechoice == 1) {
+                        do
+                        {
+                            cout << "\nWould you like to remain in " << subMenu << " or return to Main Menu?";
+                            cout << "\n1. Remain ordering in " << subMenu;
+                            cout << "\n2. Return to Main Menu";
+                            cout << "\nChoice: ";
+                            cin >> menuChoice;
 
-                        if (continuechoice != 1 && continuechoice != 2) {
-                            cout << "Invalid choice. Enter 1 or 2.\n";
-                        }
-                    } while (continuechoice != 1 && continuechoice != 2);
+                            if (menuChoice != 1 && menuChoice != 2)
+                            {
+                                cout << "Please enter 1 or 2.\n";
+                            } 
 
-                } while (continuechoice == 1);
-                break;
+                        } while (menuChoice != 1 && menuChoice != 2);
+                    }
 
-            case 5:
-                cout<<"\n\n Edit Order";
-                cout<<"\n================================\n";
-
-                if (count == 0) {
-                    cout<<"You current order is empty.";
-                    cout<<"\n===================================";
-                    break;
-                } else {
-                    do {
-                        cout<<"\nCurrent Order";
-                        cout<<"\n============================="<<endl;
-                        for (i = 0; i < count; i++) {
-                            cout<<"Order " << i+1 << ": "<<endl;
-                            cout<<item[i]<<endl;
-                            cout<<"Quantity: " << quantity[i]<<endl;
-                            cout<<"Price: P"<<price[i]
-                            <<endl<<endl;
-                        }
-                        cout<<"\n===================================";
-
-                        cout << "\n1. Remove Item";
-                        cout << "\n2. Back";
-                        cout << "\n================================";
-                        cout << "\nEnter your choice: ";
-                        cin>>editchoice;
-                        
-                        switch (editchoice) {
-                            case 1:
-                                cout<<"Choose which to remove: ";
-                                cin>>removechoice;
-                                if (removechoice >= 1 && removechoice <= count) {
-                                    removechoice --;
-
-                                    cout<<"How many would you like to remove: ";
-                                    cin>>removequantity;
-
-                                    if (removequantity > 0 && removequantity < quantity[removechoice]) {
-                                        quantity[removechoice] = quantity[removechoice] - removequantity;
-
-                                        cout<<"\nQuantity removed succesfully" << endl;
-                                    } else if (removequantity == quantity[removechoice]) {
-                                        for (i = removechoice; i < count - 1; i ++) {
-                                            item[i] = item[i + 1];
-                                            price[i] = price[i + 1];
-                                            quantity[i] = quantity[i + 1];
-                                        }
-                                        count--;
-                                        cout<<"Item removed succesfully" << endl;
-                                    } else {
-                                        cout<<"Invalid quantity";
-                                        break;
-                                    }
-                                    break;
-                                } else {
-                                    cout<<"Invalid order number" << endl;
-                                    break;
-                                }
-                                
-                            case 2:
-                                cout<<"\n Exiting..." << endl;
-                                break;
-                            default:
-                                cout<<"Invalid option" << endl;
-                                break;
-                        }
-                        if (count == 0) {
-                            cout<<"Your order is now empty. Returning to menu..." << endl;
-                            break;
-                        }
-
-                    }while (editchoice !=2);
-                }
-                break;
-
-            case 6:
+                } while (continuechoice == 1 && menuChoice == 1);
                 break;
 
             default:
@@ -776,6 +753,13 @@ int main()
         }
 
     } while (continuechoice == 1);
+
+    cout << "\nWould you like to edit your order? [Y/N]: ";
+    cin >> editOption;
+
+    if (editOption == 'Y' || editOption == 'y') {
+        EditOrder(item, price, quantity, count);
+    }
 
     cout << "\n\n================================";
     cout << "\n             RECEIPT";
@@ -795,8 +779,12 @@ int main()
     cout << "\nTotal: P" << total;
     cout << "\n================================";
 
-    cout << "\nWould you like to apply for price disocunts? [Y/N]: ";
-    cin >> discountOption;
+    do {
+        cout << "\nWould you like to apply for price disocunts? [Y/N]: ";
+        cin >> discountOption;
+    } while (discountOption != 'Y' && discountOption != 'y' && discountOption != 'N' && discountOption != 'n');
+
+
 
     if (discountOption == 'Y' || discountOption == 'y') {
             while (discountOption == 'Y' || discountOption == 'y') {
@@ -864,6 +852,93 @@ int main()
     }
 
     return 0;
+}
+
+void EditOrder(string item[], int price[], int quantity[], int &count)
+{
+    int editchoice;
+    int removechoice;
+    int removequantity;
+    int i;
+
+    do {
+        cout<<"\n\n Edit Order";
+            cout<<"\n================================\n";
+
+            if (count == 0) {
+                cout<<"You current order is empty.";
+                cout<<"\n===================================";
+                break;
+            } else {
+                do {
+                    cout<<"\nCurrent Order";
+                    cout<<"\n============================="<<endl;
+                    for (i = 0; i < count; i++) {
+                        cout<<"Order " << i+1 << ": "<<endl;
+                        cout<<item[i]<<endl;
+                        cout<<"Quantity: " << quantity[i]<<endl;
+                        cout<<"Price: P"<<price[i]
+                        <<endl<<endl;
+                    }
+                    cout<<"\n===================================";
+
+                    cout << "\n1. Remove Item";
+                    cout << "\n2. Proceed to Reciept";
+                    cout << "\n================================";
+                    cout << "\nEnter your choice: ";
+                    cin>>editchoice;
+                        
+                    switch (editchoice) {
+                        case 1:
+                            cout<<"Choose which to remove: ";
+                            cin>>removechoice;
+                            if (removechoice >= 1 && removechoice <= count) {
+                                removechoice --;
+
+                                removequantity = quantity[removechoice];
+
+                                if (removequantity > 1) {
+
+                                    cout<<"How many would you like to remove: ";
+                                    cin>>removequantity;
+
+                                    quantity[removechoice] = quantity[removechoice] - removequantity;
+
+                                    cout<<"\nQuantity removed succesfully" << endl;
+                                } else if (removequantity == 1) {
+                                    for (i = removechoice; i < count - 1; i ++) {
+                                        item[i] = item[i + 1];
+                                        price[i] = price[i + 1];
+                                        quantity[i] = quantity[i + 1];
+                                    }
+                                    count--;
+                                    cout<<"Item removed succesfully" << endl;
+                                } else {
+                                    cout<<"Invalid quantity";
+                                    break;
+                                }
+                                break;
+                            } else {
+                                cout<<"Invalid order number" << endl;
+                            }
+                            break;
+                                
+                        case 2:
+                            cout<<"\n Exiting..." << endl;
+                            break;
+                        default:
+                            cout<<"Invalid option" << endl;
+                            break;
+                    }
+                    if (count == 0) {
+                        cout<<"Your order is now empty. Returning to menu..." << endl;
+                        break;
+                    }
+
+                }while (editchoice !=2);
+            }
+            break;
+    } while (editchoice != 2);
 }
 
 float CalculateRemaining(float total, float payment)
