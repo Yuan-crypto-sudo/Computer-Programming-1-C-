@@ -1,4 +1,6 @@
 #include <iostream>
+#include <iomanip>
+#include <cstdlib>
 using namespace std;
 
 float CalculateRemaining(float total, float payment);
@@ -34,6 +36,8 @@ int main()
     float payment;
     float remaining;
     float change;
+
+    cout << fixed << setprecision(2);
 
     do
     {
@@ -772,11 +776,11 @@ int main()
         cout << "Order " << i + 1 << ": " << endl;
         cout << "Item: " << item[i] << endl;
         cout << "Quantity: " << quantity[i] << endl;
-        cout << "Price: P" << price[i] << endl;
-        cout << "Subtotal: P" << price[i] * quantity[i] << endl << endl;
+        cout << "Price: P" << static_cast<float>(price[i]) << endl;
+        cout << "Subtotal: P" << static_cast<float>(price[i] * quantity[i]) << endl << endl;
     }
     cout << "--------------------------------";
-    cout << "\nTotal: P" << total;
+    cout << "\nTotal: P" << static_cast<float>(total);
     cout << "\n================================";
 
     do {
@@ -883,7 +887,8 @@ void EditOrder(string item[], int price[], int quantity[], int &count)
                     cout<<"\n===================================";
 
                     cout << "\n1. Remove Item";
-                    cout << "\n2. Proceed to Reciept";
+                    cout << "\n2. Cancel Order";
+                    cout << "\n3. Proceed to Reciept";
                     cout << "\n================================";
                     cout << "\nEnter your choice: ";
                     cin>>editchoice;
@@ -922,9 +927,25 @@ void EditOrder(string item[], int price[], int quantity[], int &count)
                                 cout<<"Invalid order number" << endl;
                             }
                             break;
-                                
+
                         case 2:
-                            cout<<"\n Exiting..." << endl;
+                            char confirmCancel;
+
+                            cout << "\nAre you sure you want to cancel your order? [Y/N]: ";
+                            cin >> confirmCancel;
+
+                            if (confirmCancel == 'Y' || confirmCancel == 'y') {
+                                cout << "\nOrder cancelled.";
+                                cout << "\nThe program will now close\n";
+                                exit(0);
+                            } else {
+                                cout << "\nOrder cancellation aborted.";
+                            }
+
+                            break;
+                                
+                        case 3:
+                            cout<<"\nProceeding to Reciept..." << endl;
                             break;
                         default:
                             cout<<"Invalid option" << endl;
@@ -935,10 +956,10 @@ void EditOrder(string item[], int price[], int quantity[], int &count)
                         break;
                     }
 
-                }while (editchoice !=2);
+                }while (editchoice !=3);
             }
             break;
-    } while (editchoice != 2);
+    } while (editchoice != 3);
 }
 
 float CalculateRemaining(float total, float payment)
