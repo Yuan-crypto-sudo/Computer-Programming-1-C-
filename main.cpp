@@ -8,6 +8,8 @@ int CalculateTotal(int price[], int quantity[], int count);
 float CalculateDiscount(float total, float discount);
 float CalculateFinalTotal(float total, float discountamount);
 void EditOrder(string item[], int price[], int quantity[], int &count);
+int AskContinueChoice();
+int AskMiniMenuChoice(string miniMenu, string subMenu);
 
 int main()
 {
@@ -15,14 +17,14 @@ int main()
     int price[100], quantity[100];
 
     int count = 0;
-    int choice, subchoice, itemchoice, removechoice, editchoice, removequantity;
+    int choice, subchoice, itemchoice, removechoice, editchoice, removequantity, minimenuChoice;
     int total = 0;
     int i;
 
     int continuechoice = 1;
     bool itemAdded;
     char discountOption;
-    string subMenu;
+    string subMenu, miniMenu;
     int menuChoice;
     char editOption;
 
@@ -42,11 +44,20 @@ int main()
     do
     {
         bool itemAdded = false;
+        
+        cout << R"( _   __      _                     _____        )" << endl;
+        cout << R"(| | / /     | |            ___    /  __ \       )" << endl;
+        cout << R"(| |/ /  ___ | |__   ___   ( _ )   | /  \/ ___   )" << endl;
+        cout << R"(|    \ / _ \| '_ \ / _ \  / _ \/\ | |    / _ \  )" << endl;
+        cout << R"(| |\  \ (_) | |_) |  __/ | (_>  < | \__/\ (_) | )" << endl;
+        cout << R"(\_| \_/\___/|_.__/ \___|  \___/\/  \____/\___(_))" << endl << endl;
+        cout << "        ~ ~ ~ B R A S S E R I E ~ ~ ~";
+        
+                cout << "\n\n\tFINE DINING MENU";
 
-        cout << "\n\n\tFINE DINING MENU";
         cout << "\n================================";
         cout << "\n1. Starters";
-        cout << "\n2. Main Courses";
+        cout << "\n2. Main Dishes";
         cout << "\n3. Desserts";
         cout << "\n4. Drinks";
         cout << "\n================================";
@@ -59,8 +70,31 @@ int main()
                 subMenu = "STARTERS";
                 do
                 {
-                    cout << "\n\nSTARTERS";
-                    cout << "\n================================";
+cout << R"(
+
+            @@       @@       @@
+            @-       @-       @-
+             @@       @@       @@
+              @@       @@       @@
+             -@       -@       -@
+          @@@@@@@@@@@@@@@@@@@@@@@@@
+      @@@...::::++++=====++++::::...@@@
+    @ ..:::+++===---*-----*-===+++:::.. @
+    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+     @:...............................:@
+      @:+-+-+-+-+-+-+-+-+-+-+-+-+-+-+:@
+       @:...........................:@
+         @@:.....................:@@
+            @@@:.............:@@@
+              @@@@@@@@@@@@@@@@@
+                @:.........:@
+               @@@@@@@@@@@@@@@
+ ___   _                  _
+/ __| | |_   __ _   _ _  | |_   ___   _ _   ___
+\__ \ |  _| / _` | | '_| |  _| / -_) | '_| (_-<
+|___/  \__| \__,_| |_|    \__| \___| |_|   /__/
+)" << std::endl;
+                    cout << "================================";
                     cout << "\n1. Soups";
                     cout << "\n2. Salads";
                     cout << "\n3. Appetizers";
@@ -73,6 +107,7 @@ int main()
                         case 0:
                             break;
                         case 1:
+                            miniMenu = "SOUPS";
                             do
                             {
                                 cout << "\n\nSOUPS";
@@ -118,10 +153,19 @@ int main()
                                     cout << "\nAdded to order.";
                                 }
 
-                            } while (!itemAdded);
+                            if (subchoice >= 1 && subchoice <= 3) {
+                                continuechoice = AskContinueChoice();
+                            }
+
+                            if (itemchoice >= 1 && itemchoice <= 3 && continuechoice == 1) {
+                                minimenuChoice = AskMiniMenuChoice(miniMenu, subMenu);
+                            }
+
+                            } while (continuechoice == 1 && minimenuChoice == 1);
 
                             break;
                         case 2:
+                            miniMenu = "SALADS";
                             do
                             {
                                 cout << "\n\nSALADS";
@@ -165,12 +209,17 @@ int main()
                                     itemAdded = true;
 
                                     cout << "\nAdded to order.";
+                                    continuechoice = AskContinueChoice();
+                                    if (continuechoice == 1) {
+                                        minimenuChoice = AskMiniMenuChoice(miniMenu, subMenu);
+                                    }
                                 }
 
-                            } while (!itemAdded);
+                            } while (continuechoice == 1 && minimenuChoice == 1);
 
                             break;
                         case 3:
+                            miniMenu = "APPETIZERS";
                             do
                             {
                                 cout << "\n\nAPPETIZERS";
@@ -214,28 +263,18 @@ int main()
                                     itemAdded = true;
 
                                     cout << "\nAdded to order.";
+                                    continuechoice = AskContinueChoice();
+                                    if (continuechoice == 1) {
+                                        minimenuChoice = AskMiniMenuChoice(miniMenu, subMenu);
+                                    }
                                 }
 
-                            } while (!itemAdded);
+                            } while (continuechoice == 1 && minimenuChoice == 1);
 
                             break;
 
                         default:
                             cout << "\nInvalid choice.";
-                    }
-
-                    if (subchoice >= 1 && subchoice <= 3) {
-                        do {
-                            cout << "\nDo you want to continue ordering or proceed to the checkout?";
-                            cout << "\n1. Continue Ordering";
-                            cout << "\n2. Proceed to Checkout";
-                            cout << "\nChoice: ";
-                            cin >> continuechoice;
-
-                            if (continuechoice != 1 && continuechoice != 2) {
-                                cout << "Invalid choice. Enter 1 or 2.\n";
-                            }
-                        } while (continuechoice != 1 && continuechoice != 2);
                     }
 
                     if (continuechoice == 1) {
@@ -259,11 +298,30 @@ int main()
                 break;
 
             case 2:
-                subMenu = "MAIN COURSES";
+                subMenu = "MAIN DISHES";
                 do
                 {
-                    cout << "\n\nMAIN COURSES";
-                    cout << "\n================================";
+                    cout << R"(
+                    
+                            @@@
+                          @:...-@
+                           @@@@@
+                       @@@@@@@@@@@@@
+                    @@=+:..........--@@
+                   @@=++:............---@@
+                 @@=+++:...............---@@
+                @=+++:...................---@
+               @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            @...:::::::::::::::::::::::::::::...@
+              @@.............................@@
+                  @@@@@@@@@@@@@@@@@@@@@@@@@
+ __  __          _            ____    _       __
+|  \/  |  __ _  (_)  _ _      |   \  (_)  ___ | |_    ___   ___
+| |\/| | / _` | | | | ' \     | |) | | | (_-< | ' \  / -_) (_-<
+|_|  |_| \__,_| |_| |_||_|    |___/  |_| /__/ |_||_| \___| /__/
+
+)" << std::endl;
+                    cout << "================================";
                     cout << "\n1. Beef";
                     cout << "\n2. Chicken";
                     cout << "\n3. Seafood";
@@ -274,6 +332,7 @@ int main()
                     switch (subchoice)
                     {
                         case 1:
+                            miniMenu = "BEEF";
                             do
                             {
                                 cout << "\n\nBEEF";
@@ -316,13 +375,18 @@ int main()
                                     itemAdded = true;
 
                                     cout << "\nAdded to order.";
+                                    continuechoice = AskContinueChoice();
+                                    if (continuechoice == 1) {
+                                        minimenuChoice = AskMiniMenuChoice(miniMenu, subMenu);
+                                    }
                                 }
 
-                            } while (!itemAdded);
+                            } while (continuechoice == 1 && minimenuChoice == 1);
 
                             break;
 
                         case 2:
+                            miniMenu = "CHICKEN";
                             do
                             {
                                 cout << "\n\nCHICKEN";
@@ -366,13 +430,18 @@ int main()
                                     itemAdded = true;
 
                                     cout << "\nAdded to order.";
+                                    continuechoice = AskContinueChoice();
+                                    if (continuechoice == 1) {
+                                        minimenuChoice = AskMiniMenuChoice(miniMenu, subMenu);
+                                    }
                                 }
 
-                            } while (!itemAdded);
+                            } while (continuechoice == 1 && minimenuChoice == 1);
 
                             break;
 
                         case 3:
+                            miniMenu = "SEAFOOD";
                             do
                             {
                                 cout << "\n\nSEAFOOD";
@@ -416,9 +485,13 @@ int main()
                                     itemAdded = true;
 
                                     cout << "\nAdded to order.";
+                                    continuechoice = AskContinueChoice();
+                                    if (continuechoice == 1) {
+                                        minimenuChoice = AskMiniMenuChoice(miniMenu, subMenu);
+                                    }
                                 }
 
-                            } while (!itemAdded);
+                            } while (continuechoice == 1 && minimenuChoice == 1);
 
                             break;
 
@@ -428,17 +501,7 @@ int main()
 
 
                     if (subchoice >= 1 && subchoice <= 3) {
-                        do {
-                            cout << "\nDo you want to continue ordering or proceed to the checkout?";
-                            cout << "\n1. Continue Ordering";
-                            cout << "\n2. Proceed to Checkout";
-                            cout << "\nChoice: ";
-                            cin >> continuechoice;
-
-                            if (continuechoice != 1 && continuechoice != 2) {
-                                cout << "Invalid choice. Enter 1 or 2.\n";
-                            }
-                        } while (continuechoice != 1 && continuechoice != 2);
+                        continuechoice = AskContinueChoice();
                     }
 
                     if (continuechoice == 1) {
@@ -465,11 +528,41 @@ int main()
                 subMenu = "DESSERTS";
                 do
                 {
-                    cout << "\n\nDESSERTS";
-                    cout << "\n================================";
+                    
+                    cout << R"(
+                                       
+                     @@                                
+                    @+@                                
+                 @+=--@                                
+                 @-:-@     @@@                        
+                 @@@     @      @@                    
+                  @@@@   @       .@                    
+                @#@@@  @@..         @                  
+               @@####  +*@..         @@                
+             @@@@@##+*+##@    .         @              
+        @@@@@   @@@%#***+               @              
+      @@                                @              
+   @@@                                 .@              
+  @                            ....++++ @              
+  @                   .....++++++++    @              
+  @:    .....++++++++++++++------=+  ::@              
+   @----------------------..         @@                
+    @-----------.                    @@                
+     @         .................... .@@                
+      @............................ @                  
+       @. ...................@@@@@@@@                  
+        @........@@@@@@@@@@@@.                          
+         @@@@@@@@
+      ___                     _      
+     |   \ ___ ______ ___ _ _| |_ ___
+     | |) / -_|_-<_-</ -_) '_|  _(_-<
+     |___/\___/__/__/\___|_|  \__/__/
+                    )" << std::endl;
+                    
+                    cout << "================================";
                     cout << "\n1. Cakes";
                     cout << "\n2. Pastries";
-                    cout << "\n3. Ice Cream";
+                    cout << "\n3. Sundaes";
                     cout << "\n================================";
                     cout << "\nEnter your choice: ";
                     cin >> subchoice;
@@ -478,6 +571,7 @@ int main()
                     {
 
                         case 1:
+                            miniMenu = "CAKES";
                             do
                             {
                                 cout << "\n\nCAKES";
@@ -521,13 +615,18 @@ int main()
                                     itemAdded = true;
 
                                     cout << "\nAdded to order.";
+                                    continuechoice = AskContinueChoice();
+                                    if (continuechoice == 1) {
+                                        minimenuChoice = AskMiniMenuChoice(miniMenu, subMenu);
+                                    }
                                 }
 
-                            } while (!itemAdded);
+                            } while (continuechoice == 1 && minimenuChoice == 1);
 
                             break;
 
                         case 2:
+                            miniMenu = "PASTRIES";
                             do
                             {
                                 cout << "\n\nPASTRIES";
@@ -571,20 +670,25 @@ int main()
                                     itemAdded = true;
 
                                     cout << "\nAdded to order.";
+                                    continuechoice = AskContinueChoice();
+                                    if (continuechoice == 1) {
+                                        minimenuChoice = AskMiniMenuChoice(miniMenu, subMenu);
+                                    }
                                 }
 
-                            } while (!itemAdded);
+                            } while (continuechoice == 1 && minimenuChoice == 1);
 
                             break;
 
                         case 3:
+                            miniMenu = "SUNDAES";
                             do
                             {
-                                cout << "\n\nICE CREAM";
+                                cout << "\n\nSUNDAES";
                                 cout << "\n================================";
-                                cout << "\n1. Vanilla Ice Cream   - P160";
-                                cout << "\n2. Chocolate Ice Cream - P170";
-                                cout << "\n3. Strawberry Ice Cream - P170";
+                                cout << "\n1. Original Vanilla Sundae - P160";
+                                cout << "\n2. Hot Fudge Sundae        - P170";
+                                cout << "\n3. Banana Split Sundae     - P170";
                                 cout << "\n================================";
                                 cout << "\nEnter your choice: ";
                                 cin >> itemchoice;
@@ -592,19 +696,19 @@ int main()
                                 switch (itemchoice)
                                 {
                                     case 1:
-                                        item[count] = "Vanilla Ice Cream";
+                                        item[count] = "Original Vanilla Sundae";
                                         price[count] = 160;
 
                                         break;
 
                                     case 2:
-                                        item[count] = "Chocolate Ice Cream";
+                                        item[count] = "Hot Fudge Sundae";
                                         price[count] = 170;
 
                                         break;
 
                                     case 3:
-                                        item[count] = "Strawberry Ice Cream";
+                                        item[count] = "Banana Split Sundae";
                                         price[count] = 170;
 
                                         break;
@@ -621,9 +725,13 @@ int main()
                                     itemAdded = true;
 
                                     cout << "\nAdded to order.";
+                                    continuechoice = AskContinueChoice();
+                                    if (continuechoice == 1) {
+                                        minimenuChoice = AskMiniMenuChoice(miniMenu, subMenu);
+                                    }
                                 }
 
-                            } while (!itemAdded);
+                            } while (continuechoice == 1 && minimenuChoice == 1);
 
                             break;
 
@@ -632,17 +740,7 @@ int main()
                     }
 
                     if (subchoice >= 1 && subchoice <= 3) {
-                        do {
-                            cout << "\nDo you want to continue ordering or proceed to the checkout?";
-                            cout << "\n1. Continue Ordering";
-                            cout << "\n2. Proceed to Checkout";
-                            cout << "\nChoice: ";
-                            cin >> continuechoice;
-
-                            if (continuechoice != 1 && continuechoice != 2) {
-                                cout << "Invalid choice. Enter 1 or 2.\n";
-                            }
-                        } while (continuechoice != 1 && continuechoice != 2);
+                        continuechoice = AskContinueChoice();
                     }
 
                     if (continuechoice == 1) {
@@ -669,8 +767,28 @@ int main()
                 subMenu = "DRINKS";
                 do
                 {
-                    cout << "\n\t\tDRINKS";
-                    cout << "\n================================";
+                    cout << R"(
+    @@@@@                   @@@
+   @+:+:+@                 @.@
+  @:+:@:+:@               @.@
+   @+:+:+@               @.@
+    @@@@@               @.@
+     @@@@@@@@@@@@@@@@@@@.@@@@@
+      @               @.@   @
+       @-------------@.@---@
+       @:.o.......o.@.@..o.@
+        @:..o......@.@....@
+        @:........@.@...o.@
+         @:......@@@.....@
+         @:..............@
+        @@@@@@@@@@@@@@@@@@@
+      ___      _      _       
+     |   \ _ _(_)_ _ | |__ ___
+     | |) | '_| | ' \| / /(_-<
+     |___/|_| |_|_||_|_\_\/__/
+                          
+)";
+                    cout << "================================";
                     cout << "\n1. House Iced Tea  - P100";
                     cout << "\n2. Fresh Lemonade  - P130";
                     cout << "\n3. Mango Shake     - P160";
@@ -719,17 +837,7 @@ int main()
                         count++;
                         cout << "\nAdded to order.";
 
-                        do {
-                            cout << "\nDo you want to continue ordering or proceed to the checkout?";
-                            cout << "\n1. Continue Ordering";
-                            cout << "\n2. Proceed to Checkout";
-                            cout << "\nChoice: ";
-                            cin >> continuechoice;
-
-                            if (continuechoice != 1 && continuechoice != 2) {
-                                cout << "Invalid choice. Enter 1 or 2.\n";
-                            }
-                        } while (continuechoice != 1 && continuechoice != 2);
+                        continuechoice = AskContinueChoice();
                     }
 
                     if (continuechoice == 1) {
@@ -854,8 +962,52 @@ int main()
     } else {
             cout << "\nExact Payment Received.";
     }
+    
+                        cout << R"(
+  _____ _              _                   _    ___                   _             _      _ 
+ |_   _| |_  __ _ _ _ | |__  _  _ ___ _  _| |  / __|___ _ __  ___    /_\  __ _ __ _(_)_ _ | |
+   | | | ' \/ _` | ' \| / / | || / _ \ || |_| | (__/ _ \ '  \/ -_)  / _ \/ _` / _` | | ' \|_|
+   |_| |_||_\__,_|_||_|_\_\  \_, \___/\_,_(_)  \___\___/_|_|_\___| /_/ \_\__, \__,_|_|_||_(_)
+                             |__/                                        |___/               
+                    )" << std::endl;
 
     return 0;
+}
+
+int AskContinueChoice()
+{
+    int answer;
+    do {
+        cout << "\nDo you want to continue ordering or proceed to the checkout?";
+        cout << "\n1. Continue Ordering";
+        cout << "\n2. Proceed to Checkout";
+        cout << "\nChoice: ";
+        cin >> answer;
+
+        if (answer != 1 && answer != 2) {
+            cout << "Invalid choice. Enter 1 or 2\n";
+        }
+    } while (answer != 1 && answer != 2);
+
+    return answer;
+}
+
+int AskMiniMenuChoice(string miniMenu, string subMenu)
+{
+    int answer;
+    do {
+        cout << "\nWould you like to remain in " << miniMenu << " or return to " << subMenu << "?";
+        cout << "\n1. Remain ordering in " << miniMenu;
+        cout << "\n2. Return to " << subMenu;
+        cout << "\nChoice: ";
+        cin >> answer;
+
+        if (answer != 1 && answer != 2) {
+            cout << "Please enter 1 or 2.\n";
+        }
+    } while (answer != 1 && answer != 2);
+
+    return answer;
 }
 
 void EditOrder(string item[], int price[], int quantity[], int &count)
